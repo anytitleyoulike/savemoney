@@ -15,8 +15,8 @@
 					<td>Valor: {{text_field('valor','value':despesa.valor)}}</td>
 				</tr>
 			</table>
-			{{ link_to("products/search", "Search") }}
-			{{submit_button('Atualizar Despesa')}}
+			
+			{{submit_button('Atualizar Despesa', 'onclick': 'alterarDespesa()')}}
 	
 		<input type="hidden" name="id" value="{{despesa.id}}">
 		</form>
@@ -24,4 +24,9 @@
 
 </html>
 
-</html>
+<script type="text/javascript">
+
+	function alterarDespesa(){
+		alert("Despesa alterada com sucesso!");
+	}
+</script>
