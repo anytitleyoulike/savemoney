@@ -11,7 +11,9 @@ class DespesaController extends \Phalcon\Mvc\Controller
 
     public function addAction()
     {
+        
         $this->view->result = Despesa::find();
+        
         if($this->request->isPost()) {
             $despesa = new Despesa();
             $despesa->descricao = $this->request->getPost('descricao');

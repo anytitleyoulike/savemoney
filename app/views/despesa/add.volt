@@ -13,7 +13,7 @@
 					<td>Valor: {{text_field('valor')}}</td>
 				</tr>
 			</table>
-			{{submit_button('Adicionar')}}
+			{{submit_button('Adicionar', 'onclick': 'adicionarDespesa()')}}
 		</form>
 	</body>
 	<table>
@@ -31,5 +31,9 @@
 <script type="text/javascript">
 	function removeDespesa(){
 		// alert("Despesa removida com sucesso!");
+	}
+
+	function adicionarDespesa(){
+		alert("Despesa adicionada com sucesso!");
 	}
 </script>
