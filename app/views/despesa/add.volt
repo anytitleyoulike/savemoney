@@ -21,7 +21,7 @@
 			<tr>
 				<td>Descrição: <a href="/savemoney/despesa/update/{{desp.id}}">{{desp.descricao}}</a></td> 
 				<td>R${{desp.valor}}</td>
-				<td><a href="/savemoney/despesa/remove/{{desp.id}}" onclick="removeDespesa()">X</td>
+				<td><a href="/savemoney/despesa/remove/{{desp.id}}" onclick="removeDespesa()">X</a></td>
 			</tr>
 		{% endfor %}
 	</table>
@@ -30,7 +30,7 @@
 
 <script type="text/javascript">
 	function removeDespesa(){
-		// alert("Despesa removida com sucesso!");
+		alert("Despesa removida com sucesso!");
 	}
 
 	function adicionarDespesa(){
