@@ -14,18 +14,9 @@
 				</tr>
 			</table>
 			{{submit_button('Adicionar', 'onclick': 'adicionarReceita()')}}
+			{{link_to('receita/index/','Voltar')}}
 		</form>
 	</body>
-	<table>
-		{% for desp in result %}
-			<tr>
-				<td>Descrição: <a href="/savemoney/receita/update/{{desp.id}}">{{desp.descricao}}</a></td> 
-				<td>R${{desp.valor}}</td>
-				<td><a href="/savemoney/receita/remove/{{desp.id}}" onclick="removeReceita()">X</a></td>
-			</tr>
-		{% endfor %}
-	</table>
-
 </html>
 
 <script type="text/javascript">

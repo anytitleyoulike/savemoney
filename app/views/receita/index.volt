@@ -8,10 +8,12 @@
 		<table border="1">
 			{% for receita in receitas %}
 				<tr> 
-					<td>{{receita.descricao}}</td>
-					<td>{{receita.valor}}</td>
+					<td>Descrição: <a href="/savemoney/receita/update/{{receita.id}}">{{receita.descricao}}</a></td> 
+					<td>R${{receita.valor}}</td>
+					<td><a href="/savemoney/receita/remove/{{receita.id}}" onclick="removeDespesa()">X</a></td>
 				</tr>
 			{% endfor %}
 		</table>
+
 	</body>
 </html>
