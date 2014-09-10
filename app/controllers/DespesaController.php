@@ -6,7 +6,7 @@ class DespesaController extends \Phalcon\Mvc\Controller
     public function indexAction()
     {
 
-        // $this->view->result = Despesa::find();
+        $this->view->result = Despesa::find();
     }
 
     public function addAction()
@@ -52,7 +52,7 @@ class DespesaController extends \Phalcon\Mvc\Controller
 
         return $this->dispatcher->forward(
             array(
-                'action' => 'add'
+                'action' => 'index'
             ));
     }
 
