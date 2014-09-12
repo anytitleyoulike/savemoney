@@ -6,7 +6,7 @@ class DespesaController extends \Phalcon\Mvc\Controller
     public function indexAction()
     {
 
-        $this->view->result = Despesa::find();
+        $this->view->result = Despesa::findByUsuId(2);
     }
 
     public function addAction()
@@ -18,7 +18,8 @@ class DespesaController extends \Phalcon\Mvc\Controller
             $despesa = new Despesa();
             $despesa->descricao = $this->request->getPost('descricao');
             $despesa->valor = $this->request->getPost('valor');
-            $despesa->usuId = 1;
+            $despesa->data = date('Y-m-d');    
+            $despesa->usuId = 2;
 
             $despesa->save();
        }
@@ -33,10 +34,15 @@ class DespesaController extends \Phalcon\Mvc\Controller
             
             $despesa->descricao = $this->request->getPost('descricao');
             $despesa->valor = $this->request->getPost('valor');
-            $despesa->usuId = 1;
+           
+            $despesa->usuId = 2;
             
             $this->view->despesa = $despesa;
             $despesa->update();
+            
+            $response = new \Phalcon\Http\Response();
+            $response->redirect('despesa/index');
+            $response->send();
 
         } else {
            $this->view->despesa = Despesa::findFirst($despesaId);

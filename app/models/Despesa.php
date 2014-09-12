@@ -23,6 +23,12 @@ class Despesa extends \Phalcon\Mvc\Model
 
     /**
      *
+     * @var string
+     */
+    public $data;
+
+    /**
+     *
      * @var integer
      */
     public $usuId;
@@ -36,6 +42,7 @@ class Despesa extends \Phalcon\Mvc\Model
             'id' => 'id', 
             'descricao' => 'descricao', 
             'valor' => 'valor', 
+            'data' => 'data', 
             'usuId' => 'usuId'
         );
     }

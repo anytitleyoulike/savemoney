@@ -13,7 +13,7 @@
 					<td>Email: {{text_field('email')}}</td>
 				</tr>
 				<tr>
-					<td>Senha: {{text_field('senha')}}</td>
+					<td>Senha: {{password_field('senha')}}</td>
 				</tr>
 			</table>
 			{{submit_button('Adicionar')}}
