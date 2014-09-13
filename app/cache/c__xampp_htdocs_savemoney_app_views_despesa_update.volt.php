@@ -15,13 +15,18 @@
 					<td>Valor: <?php echo $this->tag->textField(array('valor', 'value' => $despesa->valor)); ?></td>
 				</tr>
 			</table>
-			<?php echo $this->tag->linkTo(array('products/search', 'Search')); ?>
-			<?php echo $this->tag->submitButton(array('Atualizar Despesa')); ?>
-			<?php echo $teste; ?>
+			
+			<?php echo $this->tag->submitButton(array('Atualizar Despesa', 'onclick' => 'alterarDespesa()')); ?>
+	
 		<input type="hidden" name="id" value="<?php echo $despesa->id; ?>">
 		</form>
 	</body>
 
 </html>
 
-</html>
+<script type="text/javascript">
+
+	function alterarDespesa(){
+		alert("Despesa alterada com sucesso!");
+	}
+</script>

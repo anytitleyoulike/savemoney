@@ -13,16 +13,19 @@
 					<td>Valor: <?php echo $this->tag->textField(array('valor')); ?></td>
 				</tr>
 			</table>
-			<?php echo $this->tag->submitButton(array('Adicionar')); ?>
+			<?php echo $this->tag->submitButton(array('Adicionar', 'onclick' => 'adicionarDespesa()')); ?>
+			<?php echo $this->tag->linkTo(array('despesa/index/', 'Voltar')); ?>
 		</form>
 	</body>
-	<table>
-		<?php foreach ($result as $desp) { ?>
-			<tr>
-				<td>Descrição: <a href="/savemoney/despesa/update/<?php echo $desp->id; ?>"><?php echo $desp->descricao; ?></a></td> 
-				<td>R$<?php echo $desp->valor; ?></td>
-			</tr>
-		<?php } ?>
-	</table>
 
 </html>
+
+<script type="text/javascript">
+	function removeDespesa(){
+		alert("Despesa removida com sucesso!");
+	}
+
+	function adicionarDespesa(){
+		alert("Despesa adicionada com sucesso!");
+	}
+</script>
