@@ -39,11 +39,11 @@ class Despesa extends \Phalcon\Mvc\Model
     public function columnMap()
     {
         return array(
-            'id' => 'id', 
-            'descricao' => 'descricao', 
-            'valor' => 'valor', 
-            'data' => 'data', 
-            'usuId' => 'usuId'
+            'desp_id' => 'id', 
+            'desp_descricao' => 'descricao', 
+            'desp_valor' => 'valor', 
+            'desp_data' => 'data', 
+            'desp_usuId' => 'usuId'
         );
     }
 
