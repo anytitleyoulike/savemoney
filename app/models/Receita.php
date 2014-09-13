@@ -39,11 +39,11 @@ class Receita extends \Phalcon\Mvc\Model
     public function columnMap()
     {
         return array(
-            'id' => 'id', 
-            'descricao' => 'descricao', 
-            'data' => 'data', 
-            'valor' => 'valor', 
-            'usuId' => 'usuId'
+            'rec_id' => 'id', 
+            'rec_descricao' => 'descricao', 
+            'rec_data' => 'data', 
+            'rec_valor' => 'valor', 
+            'rec_usuId' => 'usuId'
         );
     }
 

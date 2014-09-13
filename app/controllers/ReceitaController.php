@@ -38,6 +38,10 @@ class ReceitaController extends \Phalcon\Mvc\Controller
             $this->view->receita = $receita;
             $receita->update();
 
+            $response = new \Phalcon\Http\Response();
+            $response->redirect('receita/index');
+            $response->send();
+
         } else {
            $this->view->receita = Receita::findFirst($receitaId);
            
