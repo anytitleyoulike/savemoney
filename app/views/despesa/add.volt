@@ -12,6 +12,15 @@
 				<tr>
 					<td>Valor: {{text_field('valor')}}</td>
 				</tr>
+				<tr>
+					<td>Categoria:
+						<select name="categoria">
+							{%for cat in categoria%}
+								<option value="{{cat.id}}">{{cat.cat_nome}}</option>
+							{%endfor%}	
+						</select>
+					</td>
+				</tr>
 			</table>
 			{{submit_button('Adicionar', 'onclick': 'adicionarDespesa()')}}
 			{{link_to('despesa/index/','Voltar')}}

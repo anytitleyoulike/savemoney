@@ -14,6 +14,20 @@
 				<tr>
 					<td>Valor: {{text_field('valor','value':despesa.valor)}}</td>
 				</tr>
+				<tr>
+					<td>Categoria: 
+							<select name="categoria">
+								{%for cat in categoria%}
+
+									{% if cat.id == despesa.catId %}
+										<option value="{{cat.id}}" selected>{{cat.cat_nome}}</option>
+									{% else %}
+										<option value="{{cat.id}}">{{cat.cat_nome}}</option>
+									{% endif %}
+								{%endfor%}	
+							</select>
+						</td>
+				</tr>
 			</table>
 			
 			{{submit_button('Atualizar Despesa', 'onclick': 'alterarDespesa()')}}

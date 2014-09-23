@@ -14,6 +14,20 @@
 				<tr>
 					<td>Valor: <?php echo $this->tag->textField(array('valor', 'value' => $despesa->valor)); ?></td>
 				</tr>
+				<tr>
+					<td>Categoria: 
+							<select name="categoria">
+								<?php foreach ($categoria as $cat) { ?>
+
+									<?php if ($cat->id == $despesa->catId) { ?>
+										<option value="<?php echo $cat->id; ?>" selected><?php echo $cat->cat_nome; ?></option>
+									<?php } else { ?>
+										<option value="<?php echo $cat->id; ?>"><?php echo $cat->cat_nome; ?></option>
+									<?php } ?>
+								<?php } ?>	
+							</select>
+						</td>
+				</tr>
 			</table>
 			
 			<?php echo $this->tag->submitButton(array('Atualizar Despesa', 'onclick' => 'alterarDespesa()')); ?>

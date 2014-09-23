@@ -12,6 +12,15 @@
 				<tr>
 					<td>Valor: <?php echo $this->tag->textField(array('valor')); ?></td>
 				</tr>
+				<tr>
+					<td>Categoria:
+						<select name="categoria">
+							<?php foreach ($categoria as $cat) { ?>
+								<option value="<?php echo $cat->id; ?>"><?php echo $cat->cat_nome; ?></option>
+							<?php } ?>	
+						</select>
+					</td>
+				</tr>
 			</table>
 			<?php echo $this->tag->submitButton(array('Adicionar', 'onclick' => 'adicionarDespesa()')); ?>
 			<?php echo $this->tag->linkTo(array('despesa/index/', 'Voltar')); ?>

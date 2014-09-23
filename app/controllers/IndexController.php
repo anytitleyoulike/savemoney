@@ -7,7 +7,7 @@ class IndexController extends ControllerBase
     {
     	$this->dispatcher->forward(array(
     			'controller' => 'despesa',
-    			'action'	 => 'add'
+    			'action'	 => 'index'
     		)
 
     	);

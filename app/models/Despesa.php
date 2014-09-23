@@ -23,15 +23,21 @@ class Despesa extends \Phalcon\Mvc\Model
 
     /**
      *
-     * @var string
+     * @var integer
      */
-    public $data;
+    public $usuId;
 
     /**
      *
      * @var integer
      */
-    public $usuId;
+    public $catId;
+
+    /**
+     *
+     * @var string
+     */
+    public $data;
 
     /**
      * Independent Column Mapping.
@@ -42,9 +48,19 @@ class Despesa extends \Phalcon\Mvc\Model
             'desp_id' => 'id', 
             'desp_descricao' => 'descricao', 
             'desp_valor' => 'valor', 
-            'desp_data' => 'data', 
-            'desp_usuId' => 'usuId'
+            'desp_usuId' => 'usuId', 
+            'desp_catId' => 'catId', 
+            'desp_data' => 'data'
         );
     }
+
+    public function getSource(){
+        return "despesa";
+    }
+
+    public function initialize() {
+        $this->belongsTo("desp_catId","Categoria","cat_id");
+    }
+
 
 }
