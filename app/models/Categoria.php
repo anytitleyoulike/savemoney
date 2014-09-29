@@ -21,11 +21,11 @@ class Categoria extends \Phalcon\Mvc\Model
     public function columnMap()
     {
         return array(
-            'cat_id' => 'id', 
+            'cat_id' => 'cat_id', 
             'cat_nome' => 'cat_nome'
         );
     }
-
+    
     public function initialize(){
         $this->hasMany("cat_id", "Despesa","catId");
     }
@@ -33,5 +33,4 @@ class Categoria extends \Phalcon\Mvc\Model
     public function getSource(){
         return "categoria";
     }
-
 }
