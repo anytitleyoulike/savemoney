@@ -16,7 +16,7 @@
 					<td>Categoria:
 						<select name="categoria">
 							<?php foreach ($categoria as $cat) { ?>
-								<option value="<?php echo $cat->id; ?>"><?php echo $cat->cat_nome; ?></option>
+								<option value="<?php echo $cat->cat_id; ?>"><?php echo $cat->cat_nome; ?></option>
 							<?php } ?>	
 						</select>
 					</td>

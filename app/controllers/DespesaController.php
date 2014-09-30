@@ -61,7 +61,7 @@ class DespesaController extends \Phalcon\Mvc\Controller
     public function removeAction($despesaId) 
     {
         $despesa = Despesa::findFirst($despesaId);
-        
+    
         $despesa->delete();
 
         return $this->dispatcher->forward(
@@ -70,17 +70,27 @@ class DespesaController extends \Phalcon\Mvc\Controller
             ));
     }
 
-    public function despesasPorCategoriaAction(){
-        $query = new Phalcon\Mvc\Model\Query("select cat_nome,c.id as cat_id, sum(valor) as total from Despesa d
-                                             inner join Categoria c on d.catId = c.id
-                                             group by cat_nome", $this->getDI());
-        
-        $result = $query->execute();
-        $this->view->result = $result;
+    public function despesasPorCategoriaAction($categoria = false)
+    {
+        if($categoria) {
+            $result = Despesa::query()
+                ->where("cat_nome = :categoria:")
+                ->innerjoin("Categoria")
+                ->bind(array("categoria" => $categoria))
+                ->execute();
 
-        foreach ($result as $value) {
-            echo $value->cat_nome . " " . $value->total . "<br>";
+            $this->view->a = true;
+            $this->view->result = $result;
+        } else {
             
+            $query = new Phalcon\Mvc\Model\Query("select Categoria.cat_nome,Categoria.cat_id, sum(Despesa.valor) as total from Despesa
+                                                 INNER JOIN Categoria
+                                                 group by cat_nome
+                                                 order by total DESC", $this->getDI());
+            
+            $result = $query->execute();
+            $this->view->a = $categoria;
+            $this->view->result = $result;
         }
             
     }

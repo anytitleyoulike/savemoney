@@ -59,7 +59,7 @@ class Despesa extends \Phalcon\Mvc\Model
     }
 
     public function initialize() {
-        $this->belongsTo("desp_catId","Categoria","cat_id");
+        $this->belongsTo("catId","Categoria","cat_id");
     }
 
 

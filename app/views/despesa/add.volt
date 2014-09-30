@@ -16,7 +16,7 @@
 					<td>Categoria:
 						<select name="categoria">
 							{%for cat in categoria%}
-								<option value="{{cat.id}}">{{cat.cat_nome}}</option>
+								<option value="{{cat.cat_id}}">{{cat.cat_nome}}</option>
 							{%endfor%}	
 						</select>
 					</td>

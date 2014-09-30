@@ -19,10 +19,10 @@
 							<select name="categoria">
 								<?php foreach ($categoria as $cat) { ?>
 
-									<?php if ($cat->id == $despesa->catId) { ?>
-										<option value="<?php echo $cat->id; ?>" selected><?php echo $cat->cat_nome; ?></option>
+									<?php if ($cat->cat_id == $despesa->catId) { ?>
+										<option value="<?php echo $cat->cat_id; ?>" selected><?php echo $cat->cat_nome; ?></option>
 									<?php } else { ?>
-										<option value="<?php echo $cat->id; ?>"><?php echo $cat->cat_nome; ?></option>
+										<option value="<?php echo $cat->cat_id; ?>"><?php echo $cat->cat_nome; ?></option>
 									<?php } ?>
 								<?php } ?>	
 							</select>
