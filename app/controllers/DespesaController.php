@@ -15,7 +15,6 @@ class DespesaController extends \Phalcon\Mvc\Controller
     public function addAction()
     {
         
-        $this->view->result = Despesa::find();
         $this->view->categoria = Categoria::find();
 
             $dao = new DespesaDao();
@@ -69,6 +68,9 @@ class DespesaController extends \Phalcon\Mvc\Controller
                 'action' => 'index'
             ));
     }
+    public function testeJsAction() {
+        $this->view->teste = "meu  valor";
+    }
 
     public function despesasPorCategoriaAction($categoria = false)
     {
@@ -93,6 +95,27 @@ class DespesaController extends \Phalcon\Mvc\Controller
             $this->view->result = $result;
         }
             
+    }
+
+    public function despesaPorFormaPagamentoAction($pagamento = false) 
+    {
+        if($pagamento) {
+            $result = Despesa::query()
+                ->where("desp_forma_pgto = :pagamento:")
+                ->bind(array("pagamento" => $pagamento))
+                ->execute();
+        } else {
+            // $query = new Phalcon\Mvc\Model\Query("select sum(Despesa.valor) as total from Despesa
+            //                                      group by Despesa.forma_pgto
+            //                                      order by total DESC", $this->getDI());
+
+            Despesa::sum(array(
+                "column" => "valor",
+                "group" => "forma_pgto")
+            );
+            
+           echo "oi";
+        }
     }
 
 }
