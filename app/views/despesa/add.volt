@@ -15,9 +15,19 @@
 				<tr>
 					<td>Categoria:
 						<select name="categoria">
+							<option value="">Selecione..</option>
 							{%for cat in categoria%}
 								<option value="{{cat.cat_id}}">{{cat.cat_nome}}</option>
 							{%endfor%}	
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Forma de Pagamento:
+						<select name="forma_pgto">
+							<option value="credito">Cartão de Crédito</option>
+							<option value="debito">Cartão de Débito</option>
+							<option value="dinheiro">À Vista</option>
 						</select>
 					</td>
 				</tr>

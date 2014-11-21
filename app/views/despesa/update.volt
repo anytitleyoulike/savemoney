@@ -27,6 +27,16 @@
 								{%endfor%}	
 							</select>
 						</td>
+				<tr>
+					<td>Forma de Pagamento:
+						<select name="forma_pgto">
+							<option value="credito">Cartão de Crédito</option>
+							<option value="debito">Cartão de Débito</option>
+							<option value="dinheiro">À Vista</option>
+						</select>
+					</td>
+				</tr>
+
 				</tr>
 			</table>
 			

@@ -25,6 +25,7 @@ class DespesaController extends \Phalcon\Mvc\Controller
             $despesa->valor = $this->request->getPost('valor');
             $despesa->data = date('Y-m-d');    
             $despesa->catId = $this->request->getPost('categoria');
+            $despesa->forma_pgto = $this->request->getPost('forma_pgto');
             $despesa->usuId = 2;
             
             $dao->addDespesa($despesa);
@@ -41,7 +42,7 @@ class DespesaController extends \Phalcon\Mvc\Controller
             $despesa->descricao = $this->request->getPost('descricao');
             $despesa->valor = $this->request->getPost('valor');
             $despesa->catId = $this->request->getPost('categoria');
-            
+            $despesa->forma_pgto = $this->request->getPost('forma_pgto');
             $despesa->usuId = 2;
             
             $this->view->despesa = $despesa;
@@ -81,7 +82,7 @@ class DespesaController extends \Phalcon\Mvc\Controller
                 ->bind(array("categoria" => $categoria))
                 ->execute();
 
-            $this->view->a = true;
+            $this->view->condition = true;
             $this->view->result = $result;
         } else {
             
@@ -91,30 +92,36 @@ class DespesaController extends \Phalcon\Mvc\Controller
                                                  order by total DESC", $this->getDI());
             
             $result = $query->execute();
-            $this->view->a = $categoria;
+            $this->view->condition = $categoria;
             $this->view->result = $result;
         }
             
     }
 
-    public function despesaPorFormaPagamentoAction($pagamento = false) 
+    public function despesasPorFormaPagamentoAction($pagamento = false) 
     {
         if($pagamento) {
             $result = Despesa::query()
-                ->where("desp_forma_pgto = :pagamento:")
+                ->where("forma_pgto = :pagamento:")
                 ->bind(array("pagamento" => $pagamento))
                 ->execute();
+
+
+            $this->view->result = $result;
+            $this->view->condition = true;
+
         } else {
             // $query = new Phalcon\Mvc\Model\Query("select sum(Despesa.valor) as total from Despesa
             //                                      group by Despesa.forma_pgto
             //                                      order by total DESC", $this->getDI());
 
-            Despesa::sum(array(
+            $result = Despesa::sum(array(
                 "column" => "valor",
                 "group" => "forma_pgto")
             );
             
-           echo "oi";
+          $this->view->result = $result;
+          $this->view->condition = false;
         }
     }
 
