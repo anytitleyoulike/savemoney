@@ -15,7 +15,6 @@ class DespesaController extends \Phalcon\Mvc\Controller
     public function addAction()
     {
         
-        $this->view->result = Despesa::find();
         $this->view->categoria = Categoria::find();
 
             $dao = new DespesaDao();
@@ -26,6 +25,7 @@ class DespesaController extends \Phalcon\Mvc\Controller
             $despesa->valor = $this->request->getPost('valor');
             $despesa->data = date('Y-m-d');    
             $despesa->catId = $this->request->getPost('categoria');
+            $despesa->forma_pgto = $this->request->getPost('forma_pgto');
             $despesa->usuId = 2;
             
             $dao->addDespesa($despesa);
@@ -42,7 +42,7 @@ class DespesaController extends \Phalcon\Mvc\Controller
             $despesa->descricao = $this->request->getPost('descricao');
             $despesa->valor = $this->request->getPost('valor');
             $despesa->catId = $this->request->getPost('categoria');
-            
+            $despesa->forma_pgto = $this->request->getPost('forma_pgto');
             $despesa->usuId = 2;
             
             $this->view->despesa = $despesa;
@@ -61,7 +61,7 @@ class DespesaController extends \Phalcon\Mvc\Controller
     public function removeAction($despesaId) 
     {
         $despesa = Despesa::findFirst($despesaId);
-        
+    
         $despesa->delete();
 
         return $this->dispatcher->forward(
@@ -69,20 +69,60 @@ class DespesaController extends \Phalcon\Mvc\Controller
                 'action' => 'index'
             ));
     }
+    public function testeJsAction() {
+        $this->view->teste = "meu  valor";
+    }
 
-    public function despesasPorCategoriaAction(){
-        $query = new Phalcon\Mvc\Model\Query("select cat_nome,c.id as cat_id, sum(valor) as total from Despesa d
-                                             inner join Categoria c on d.catId = c.id
-                                             group by cat_nome", $this->getDI());
-        
-        $result = $query->execute();
-        $this->view->result = $result;
+    public function despesasPorCategoriaAction($categoria = false)
+    {
+        if($categoria) {
+            $result = Despesa::query()
+                ->where("cat_nome = :categoria:")
+                ->innerjoin("Categoria")
+                ->bind(array("categoria" => $categoria))
+                ->execute();
 
-        foreach ($result as $value) {
-            echo $value->cat_nome . " " . $value->total . "<br>";
+            $this->view->condition = true;
+            $this->view->result = $result;
+        } else {
             
+            $query = new Phalcon\Mvc\Model\Query("select Categoria.cat_nome,Categoria.cat_id, sum(Despesa.valor) as total from Despesa
+                                                 INNER JOIN Categoria
+                                                 group by cat_nome
+                                                 order by total DESC", $this->getDI());
+            
+            $result = $query->execute();
+            $this->view->condition = $categoria;
+            $this->view->result = $result;
         }
             
+    }
+
+    public function despesasPorFormaPagamentoAction($pagamento = false) 
+    {
+        if($pagamento) {
+            $result = Despesa::query()
+                ->where("forma_pgto = :pagamento:")
+                ->bind(array("pagamento" => $pagamento))
+                ->execute();
+
+
+            $this->view->result = $result;
+            $this->view->condition = true;
+
+        } else {
+            // $query = new Phalcon\Mvc\Model\Query("select sum(Despesa.valor) as total from Despesa
+            //                                      group by Despesa.forma_pgto
+            //                                      order by total DESC", $this->getDI());
+
+            $result = Despesa::sum(array(
+                "column" => "valor",
+                "group" => "forma_pgto")
+            );
+            
+          $this->view->result = $result;
+          $this->view->condition = false;
+        }
     }
 
 }

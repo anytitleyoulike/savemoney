@@ -15,9 +15,19 @@
 				<tr>
 					<td>Categoria:
 						<select name="categoria">
+							<option value="">Selecione..</option>
 							<?php foreach ($categoria as $cat) { ?>
-								<option value="<?php echo $cat->id; ?>"><?php echo $cat->cat_nome; ?></option>
+								<option value="<?php echo $cat->cat_id; ?>"><?php echo $cat->cat_nome; ?></option>
 							<?php } ?>	
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Forma de Pagamento:
+						<select name="forma_pgto">
+							<option value="credito">Cartão de Crédito</option>
+							<option value="debito">Cartão de Débito</option>
+							<option value="dinheiro">À Vista</option>
 						</select>
 					</td>
 				</tr>

@@ -19,14 +19,24 @@
 							<select name="categoria">
 								{%for cat in categoria%}
 
-									{% if cat.id == despesa.catId %}
-										<option value="{{cat.id}}" selected>{{cat.cat_nome}}</option>
+									{% if cat.cat_id == despesa.catId %}
+										<option value="{{cat.cat_id}}" selected>{{cat.cat_nome}}</option>
 									{% else %}
-										<option value="{{cat.id}}">{{cat.cat_nome}}</option>
+										<option value="{{cat.cat_id}}">{{cat.cat_nome}}</option>
 									{% endif %}
 								{%endfor%}	
 							</select>
 						</td>
+				<tr>
+					<td>Forma de Pagamento:
+						<select name="forma_pgto">
+							<option value="credito">Cartão de Crédito</option>
+							<option value="debito">Cartão de Débito</option>
+							<option value="dinheiro">À Vista</option>
+						</select>
+					</td>
+				</tr>
+
 				</tr>
 			</table>
 			

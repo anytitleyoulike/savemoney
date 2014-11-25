@@ -1,6 +1,6 @@
 <html>
 
-	<head> <h1>Despesas Por Categoria</h1></head>
+	<head> <h1>Despesas Por Forma de pagamento</h1></head>
 	
 	<body>
 		<table border="1">
@@ -8,26 +8,27 @@
 				<tr>
 					<td>Descrição</td>
 					<td>Valor</td>
-					<td>Categoria</td>
+					<td>Forma de Pagamento</td>
 				</tr>
+
 				{% for despesa in result %}
 					<tr align="center">
 						<td><a href="/savemoney/despesa/update/{{despesa.id}}">{{despesa.descricao}}</a></td>
 						<td>R${{despesa.valor}}</td>
-						<td>{{despesa.categoria.cat_nome}}</td>
+						<td>{{despesa.forma_pgto}}</td>
 					</tr>
 				{%endfor%}
 				
 			<?php } else{ ?>
 				<tr>
-					<td>Categoria</td>
+					<td>Forma de Pagamento</td>
 					<td>Total</td>
 				</tr>
 				{% for despesa in result %}
 
 					<tr align="center">
-						<td><a href="/savemoney/despesa/despesasPorCategoria/{{despesa.cat_nome}}">{{despesa.cat_nome}}</a></td>
-						<td>R${{despesa.total}}</td>
+						<td><a href="/savemoney/despesa/despesasPorFormaPagamento/{{despesa.forma_pgto}}">{{despesa.forma_pgto}}</a></td>
+						<td>R${{despesa.sumatory}}</td>
 					</tr>
 				{%endfor%}
 			<?php }?>

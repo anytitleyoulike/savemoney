@@ -1,6 +1,6 @@
 <html>
 
-	<head> <h1>Despesas Por Categoria</h1></head>
+	<head> <h1>Despesas Por Forma de pagamento</h1></head>
 	
 	<body>
 		<table border="1">
@@ -8,26 +8,27 @@
 				<tr>
 					<td>Descrição</td>
 					<td>Valor</td>
-					<td>Categoria</td>
+					<td>Forma de Pagamento</td>
 				</tr>
+
 				<?php foreach ($result as $despesa) { ?>
 					<tr align="center">
 						<td><a href="/savemoney/despesa/update/<?php echo $despesa->id; ?>"><?php echo $despesa->descricao; ?></a></td>
 						<td>R$<?php echo $despesa->valor; ?></td>
-						<td><?php echo $despesa->categoria->cat_nome; ?></td>
+						<td><?php echo $despesa->forma_pgto; ?></td>
 					</tr>
 				<?php } ?>
 				
 			<?php } else{ ?>
 				<tr>
-					<td>Categoria</td>
+					<td>Forma de Pagamento</td>
 					<td>Total</td>
 				</tr>
 				<?php foreach ($result as $despesa) { ?>
 
 					<tr align="center">
-						<td><a href="/savemoney/despesa/despesasPorCategoria/<?php echo $despesa->cat_nome; ?>"><?php echo $despesa->cat_nome; ?></a></td>
-						<td>R$<?php echo $despesa->total; ?></td>
+						<td><a href="/savemoney/despesa/despesasPorFormaPagamento/<?php echo $despesa->forma_pgto; ?>"><?php echo $despesa->forma_pgto; ?></a></td>
+						<td>R$<?php echo $despesa->sumatory; ?></td>
 					</tr>
 				<?php } ?>
 			<?php }?>
