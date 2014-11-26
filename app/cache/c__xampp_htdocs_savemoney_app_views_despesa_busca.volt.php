@@ -15,32 +15,44 @@
     <div class="row">
         <div class="col-md-offset-2 col-lg-8">
             <div class="well">
-            <h1>Save Money</h1>
+                <h1>Save Money</h1>
                 <div class="row">
                     <div class="col-lg-12">
-                        <a href="/savemoney/despesa/add" class="btn btn-material-red">Adicionar Despesas</a>
-                        <a href="/savemoney/receita/" class="btn btn-material-lightgreen">Receitas</a>
+                        <a href="despesa.html" class="btn btn-material-red">Despesas</a>
+                        <a href="receitas.html" class="btn btn-material-lightgreen">Receitas</a>
                         <a href="orcamento.html" class="btn btn-material-lightblue">Orçamento</a>
                         <a href="busca.html" class="btn btn-default"><i class="mdi-action-search"></i> Busca por categoria</a>
                     </div>
                     <div class="col-lg-12">
+                        <h2>Despesas por Categoria</h2>
                         <table class="table table-striped table-hover">
+                            <?php if($condition == true) {?>
                             <thead>
                             <tr>
                                 <th>Descrição</th>
                                 <th>Valor</th>
-                                <th>X</th> 
+                                <th>Categoria</th>
                             </tr>
                             </thead>
+
                             <tbody>
-                            {% for despesa in result %}
+                            <?php foreach ($result as $despesa) { ?>
                             <tr>
-                                <td><a href="/savemoney/despesa/testeUpdate/{{despesa.id}}">{{despesa.descricao}}</a></td>
-                                <td>R$ {{despesa.valor}}</td>
-                                <td><a href="/savemoney/despesa/remove/{{despesa.id}}" onclick="removeDespesa()">Excluir</a></td>
+                                <td><a href="/savemoney/despesa/update/<?php echo $despesa->id; ?>"><?php echo $despesa->descricao; ?></a></td>
+                                <td>R$<?php echo $despesa->valor; ?></td>
+                                <td><?php echo $despesa->categoria->cat_nome; ?></td>
                             </tr>
-                            {% endfor %}
-                           </tbody>
+                            <?php } ?>
+                            <? } else {
+
+                                
+                            }?>
+                        <td></td>
+                        
+                    </tr>
+                
+                            
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -49,15 +61,15 @@
     </div>
 </div>
 
-    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-    <script src="../js/ripples.min.js"></script>
-    <script src="../js/material.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $.material.init();
-        });
-    </script>
+<script src="../js/ripples.min.js"></script>
+<script src="../js/material.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $.material.init();
+    });
+</script>
 </body>
 </html>
