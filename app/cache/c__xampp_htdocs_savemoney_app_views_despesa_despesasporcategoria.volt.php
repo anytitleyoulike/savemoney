@@ -38,7 +38,7 @@
                             </thead>
                             <tbody>
                             <?php foreach ($result as $despesa) { ?>
-                                <tr align="center">
+                                <tr>
                                     <td><a href="/savemoney/despesa/update/<?php echo $despesa->id; ?>"><?php echo $despesa->descricao; ?></a></td>
                                     <td>R$<?php echo $despesa->valor; ?></td>
                                     <td><?php echo $despesa->categoria->cat_nome; ?></td>
@@ -55,13 +55,17 @@
                                 </thead>
                                 <tbody>
                                 <?php foreach ($result as $despesa) { ?>
-                                    <tr align="center">
+                                    <tr>
                                         <td><a href="/savemoney/despesa/despesasPorCategoria/<?php echo $despesa->cat_nome; ?>"><?php echo $despesa->cat_nome; ?></td>
                                         <td>R$<?php echo $despesa->total; ?></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
                             <?php } ?>
+                            <tr>
+                                    <th>Total Gasto:</th>
+                                    <th>R$<?php echo $totalGasto; ?></th>
+                                </tr>
                         </table>
                     </div>
                 </div>

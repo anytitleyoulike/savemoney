@@ -29,7 +29,7 @@
                         <h2>Despesas por Forma de Pagamento</h2>
                         <table class="table table-striped table-hover">
                            <?php if($condition == true ) { ?>
-                           <thead>
+                           <thead align="center">
                             <tr>
                                 <th>Descricao</th>
                                 <th>Valor</th>
@@ -38,7 +38,7 @@
                             </thead>
                             <tbody>
                             <?php foreach ($result as $despesa) { ?>
-                                <tr align="center">
+                                <tr>
                                     <td><a href="/savemoney/despesa/update/<?php echo $despesa->id; ?>"><?php echo $despesa->descricao; ?></a></td>
                                     <td>R$<?php echo $despesa->valor; ?></td>
                                     <td><?php echo $despesa->formapgto->tipo; ?></td>
@@ -47,7 +47,7 @@
                             </tbody> 
 
                             <?php } else { ?>
-                                <thead>
+                                <thead align="center">
                                 <tr>
                                     <th>Forma de Pagamento</th>
                                     <th>Total</th>
@@ -55,13 +55,18 @@
                                 </thead>
                                 <tbody>
                                 <?php foreach ($result as $despesa) { ?>
-                                    <tr align="center">
+                                    <tr>
                                         <td><a href="/savemoney/despesa/despesasPorFormaPagamento/<?php echo $despesa->tipo; ?>"><?php echo $despesa->tipo; ?></td>
                                         <td>R$<?php echo $despesa->total; ?></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
                             <?php } ?>
+                               
+                                <tr>
+                                    <th>Total Gasto:</th>
+                                    <th>R$<?php echo $totalGasto; ?></th>
+                                </tr>
                         </table>
                     </div>
                 </div>

@@ -27,9 +27,9 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <a href="/savemoney/despesa/index" class="btn btn-material-red">Despesas</a>
-                        <a href="receitas.html" class="btn btn-material-lightgreen">Receitas</a>
+                        <a href="/savemoney/receita/index" class="btn btn-material-lightgreen">Receitas</a>
                         <a href="orcamento.html" class="btn btn-material-lightblue">Orçamento</a>
-                        <a href="/savemoney/despesa/busca3" class="btn btn-default"><i class="mdi-action-search"></i> Busca por categoria</a>
+                        <a href="/savemoney/despesa/despesasPorCategoria" class="btn btn-default"><i class="mdi-action-search"></i> Busca por categoria</a>
                     </div>
                     <div class="col-lg-12">
                         <form class="form-horizontal">
