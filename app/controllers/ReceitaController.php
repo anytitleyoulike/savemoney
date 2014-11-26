@@ -48,8 +48,7 @@ class ReceitaController extends \Phalcon\Mvc\Controller
         }
     }
 
-
-    public function removeAction($receitaId) 
+     public function removeAction($receitaId) 
     {
         $receita = Receita::findFirst($receitaId);
         
