@@ -41,7 +41,7 @@
                                 <tr align="center">
                                     <td><a href="/savemoney/despesa/update/<?php echo $despesa->id; ?>"><?php echo $despesa->descricao; ?></a></td>
                                     <td>R$<?php echo $despesa->valor; ?></td>
-                                    <td><?php echo $despesa->forma_pgto; ?></td>
+                                    <td><?php echo $despesa->formapgto->tipo; ?></td>
                                 </tr>
                             <?php } ?>
                             </tbody> 
@@ -56,8 +56,8 @@
                                 <tbody>
                                 <?php foreach ($result as $despesa) { ?>
                                     <tr align="center">
-                                        <td><a href="/savemoney/despesa/despesasPorFormaPagamento/<?php echo $despesa->forma_pgto; ?>"><?php echo $despesa->forma_pgto; ?></td>
-                                        <td>R$<?php echo $despesa->sumatory; ?></td>
+                                        <td><a href="/savemoney/despesa/despesasPorFormaPagamento/<?php echo $despesa->tipo; ?>"><?php echo $despesa->tipo; ?></td>
+                                        <td>R$<?php echo $despesa->total; ?></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>

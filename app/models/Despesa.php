@@ -23,12 +23,6 @@ class Despesa extends \Phalcon\Mvc\Model
 
     /**
      *
-     * @var string
-     */
-    public $forma_pgto;
-
-    /**
-     *
      * @var integer
      */
     public $usuId;
@@ -41,20 +35,22 @@ class Despesa extends \Phalcon\Mvc\Model
 
     /**
      *
+     * @var integer
+     */
+    public $forma_pgto;
+
+    /**
+     *
      * @var string
      */
     public $data;
-    
     public function getSource(){
         return "despesa";
     }
     public function initialize() {
         $this->belongsTo("catId","Categoria","cat_id");
+        $this->belongsTo("forma_pgto","FormaPgto","id");
     }
-
-    /**
-     * Independent Column Mapping.
-     */
     public function columnMap()
     {
         return array(
@@ -67,5 +63,4 @@ class Despesa extends \Phalcon\Mvc\Model
             'desp_data' => 'data'
         );
     }
-
 }

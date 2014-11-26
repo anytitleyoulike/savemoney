@@ -41,7 +41,7 @@
                                 <tr align="center">
                                     <td><a href="/savemoney/despesa/update/{{despesa.id}}">{{despesa.descricao}}</a></td>
                                     <td>R${{despesa.valor}}</td>
-                                    <td>{{despesa.forma_pgto}}</td>
+                                    <td>{{despesa.formapgto.tipo}}</td>
                                 </tr>
                             {%endfor%}
                             </tbody> 
@@ -56,8 +56,8 @@
                                 <tbody>
                                 {% for despesa in result %}
                                     <tr align="center">
-                                        <td><a href="/savemoney/despesa/despesasPorFormaPagamento/{{despesa.forma_pgto}}">{{despesa.forma_pgto}}</td>
-                                        <td>R${{despesa.sumatory}}</td>
+                                        <td><a href="/savemoney/despesa/despesasPorFormaPagamento/{{despesa.tipo}}">{{despesa.tipo}}</td>
+                                        <td>R${{despesa.total}}</td>
                                     </tr>
                                 {%endfor%}
                             </tbody>

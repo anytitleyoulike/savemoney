@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-<form name='add' method="post" action="/savemoney/despesa/add">
+<form name='add' method="post" action="/savemoney/despesa/update">
 <div class="container">
     <div class="row">
         <div class="col-md-offset-2 col-lg-8">
@@ -52,7 +52,12 @@
                                     <div class="col-lg-10">
                                         <select class="form-control" name="categoria" id="select">
                                             {%for cat in categoria%}
-                                                <option value="{{cat.cat_id}}">{{cat.cat_nome}}</option>
+
+                                                {% if cat.cat_id == despesa.catId %}
+                                                    <option value="{{cat.cat_id}}" selected>{{cat.cat_nome}}</option>
+                                                {% else %}
+                                                    <option value="{{cat.cat_id}}">{{cat.cat_nome}}</option>
+                                                {% endif %}
                                             {%endfor%}  
                                         </select>
 
@@ -62,24 +67,20 @@
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">Forma de pagamento</label>
                                     <div class="col-lg-10">
+                                        {%for pgto in pagamento %}
                                         <div class="radio radio-primary">
+
+                                            {% if pgto.id == despesa.forma_pgto %}
                                             <label>
-                                                <input type="radio" name="forma_pgto" id="optionsRadios1" value="credito" checked="">
-                                                Cartão de Crédito
+                                                <input type="radio" name="forma_pgto" id="optionsRadios1" value="{{pgto.id}}" checked="">{{pgto.tipo}}
                                             </label>
-                                        </div>
-                                        <div class="radio radio-primary">
+                                            {% else %}
                                             <label>
-                                                <input type="radio" name="forma_pgto" id="optionsRadios2" value="debito">
-                                                Cartão de Débito
+                                                <input type="radio" name="forma_pgto" id="optionsRadios1" value="{{pgto.id}}">{{pgto.tipo}}
                                             </label>
+                                            {% endif %}
                                         </div>
-                                        <div class="radio radio-primary">
-                                            <label>
-                                                <input type="radio" name="forma_pgto" id="optionsRadios2" value="dinheiro">
-                                                Dinheiro
-                                            </label>
-                                        </div>
+                                        {%endfor%}  
                                     </div>
                                 </div>
 
@@ -109,7 +110,7 @@
     });
 
      function adicionarDespesa(){
-        alert("Despesa adicionada com sucesso!");
+        alert("Despesa alterada com sucesso!");
     }
 
     

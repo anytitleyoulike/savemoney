@@ -12,22 +12,13 @@ class DespesaController extends \Phalcon\Mvc\Controller
         $this->view->result = Despesa::findByUsuId(2);
     }
 
-    public function buscaAction(){
-
-    }
-    public function indexDespesaAction()
-    {
-
-        $this->view->result = Despesa::findByUsuId(2);
-    }
-
 
     public function addAction()
     {
         
         $this->view->categoria = Categoria::find();
-
-            $dao = new DespesaDao();
+        
+        $dao = new DespesaDao();
         
         if($this->request->isPost()) {
             $despesa = new Despesa();
@@ -47,8 +38,8 @@ class DespesaController extends \Phalcon\Mvc\Controller
     {
         
         $this->view->categoria = Categoria::find();
-
-            $dao = new DespesaDao();
+        
+        $dao = new DespesaDao();
         
         if($this->request->isPost()) {
             $despesa = new Despesa();
@@ -62,7 +53,6 @@ class DespesaController extends \Phalcon\Mvc\Controller
             $dao->addDespesa($despesa);
        }
     }
-
 
     public function updateAction($despesaId) 
     {     
@@ -87,9 +77,11 @@ class DespesaController extends \Phalcon\Mvc\Controller
         } else {
            $this->view->despesa = Despesa::findFirst($despesaId);
            $this->view->categoria = Categoria::find();
+           $this->view->pagamento = FormaPgto::find();
         }
     }
     
+   
     public function busca2Action($categoria){
         
         if($categoria) {
@@ -180,7 +172,8 @@ class DespesaController extends \Phalcon\Mvc\Controller
     {
         if($pagamento) {
             $result = Despesa::query()
-                ->where("forma_pgto = :pagamento:")
+                ->where("tipo = :pagamento:")
+                ->innerjoin("FormaPgto")
                 ->bind(array("pagamento" => $pagamento))
                 ->execute();
 
@@ -189,19 +182,25 @@ class DespesaController extends \Phalcon\Mvc\Controller
             $this->view->condition = true;
 
         } else {
-            // $query = new Phalcon\Mvc\Model\Query("select sum(Despesa.valor) as total from Despesa
-            //                                      group by Despesa.forma_pgto
-            //                                      order by total DESC", $this->getDI());
-
-            $result = Despesa::sum(array(
-                "column" => "valor",
-                "group" => "forma_pgto")
-            );
+             $query = new Phalcon\Mvc\Model\Query("select FormaPgto.tipo,FormaPgto.id, sum(Despesa.valor) as total from Despesa
+                                                 INNER JOIN FormaPgto
+                                                 group by tipo
+                                                 order by total DESC", $this->getDI());
             
-          $this->view->result = $result;
-          $this->view->condition = false;
+            $result = $query->execute();
+            $this->view->result = $result;
+            $this->view->condition = false;
         }
     }
-
+    public function testeAction() {
+            $result = new Phalcon\Mvc\Model\Query("select Categoria.cat_nome,Categoria.cat_id, sum(Despesa.valor) as total from Despesa
+                                                 INNER JOIN Categoria
+                                                 group by cat_nome
+                                                 order by total DESC", $this->getDI());
+        foreach ($result as $value) {
+            var_dump($value);
+            # code...
+        }
+    }
 }
 

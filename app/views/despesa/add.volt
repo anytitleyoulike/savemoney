@@ -58,30 +58,31 @@
 
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">Forma de pagamento</label>
                                     <div class="col-lg-10">
-                                        <div class="radio radio-primary">
-                                            <label>
-                                                <input type="radio" name="forma_pgto" id="optionsRadios1" value="credito" checked="">
-                                                Cartão de Crédito
-                                            </label>
-                                        </div>
-                                        <div class="radio radio-primary">
-                                            <label>
-                                                <input type="radio" name="forma_pgto" id="optionsRadios2" value="debito">
-                                                Cartão de Débito
-                                            </label>
-                                        </div>
-                                        <div class="radio radio-primary">
-                                            <label>
-                                                <input type="radio" name="forma_pgto" id="optionsRadios2" value="dinheiro">
-                                                Dinheiro
-                                            </label>
-                                        </div>
+                                            <div class="radio radio-primary">
+                                                <label>
+                                                    <input type="radio" name="forma_pgto" id="optionsRadios1" value="1">Cartão de Crédito
+                                                </label>
+                                            </div>
+                                    </div>
+                                    <div class="col-lg-10">
+                                            <div class="radio radio-primary">
+                                                <label>
+                                                    <input type="radio" name="forma_pgto" id="optionsRadios2" value="2">Cartão de Débito
+                                                </label>
+                                            </div>
                                     </div>
                                 </div>
+                                <div class="col-lg-10">
+                                            <div class="radio radio-primary">
+                                                <label>
+                                                    <input type="radio" name="forma_pgto" id="optionsRadios3" value="3">Dinheiro
+                                                </label>
+                                            </div>
+                                    </div>
+
 
                                 <div class="form-group">
                                     <div class="col-lg-10 col-lg-offset-2">

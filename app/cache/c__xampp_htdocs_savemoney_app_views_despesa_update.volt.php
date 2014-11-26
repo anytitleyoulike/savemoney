@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-<form name='add' method="post" action="/savemoney/despesa/add">
+<form name='add' method="post" action="/savemoney/despesa/update">
 <div class="container">
     <div class="row">
         <div class="col-md-offset-2 col-lg-8">
@@ -52,7 +52,12 @@
                                     <div class="col-lg-10">
                                         <select class="form-control" name="categoria" id="select">
                                             <?php foreach ($categoria as $cat) { ?>
-                                                <option value="<?php echo $cat->cat_id; ?>"><?php echo $cat->cat_nome; ?></option>
+
+                                                <?php if ($cat->cat_id == $despesa->catId) { ?>
+                                                    <option value="<?php echo $cat->cat_id; ?>" selected><?php echo $cat->cat_nome; ?></option>
+                                                <?php } else { ?>
+                                                    <option value="<?php echo $cat->cat_id; ?>"><?php echo $cat->cat_nome; ?></option>
+                                                <?php } ?>
                                             <?php } ?>  
                                         </select>
 
@@ -62,24 +67,20 @@
                                 <div class="form-group">
                                     <label class="col-lg-2 control-label">Forma de pagamento</label>
                                     <div class="col-lg-10">
+                                        <?php foreach ($pagamento as $pgto) { ?>
                                         <div class="radio radio-primary">
+
+                                            <?php if ($pgto->id == $despesa->forma_pgto) { ?>
                                             <label>
-                                                <input type="radio" name="forma_pgto" id="optionsRadios1" value="credito" checked="">
-                                                Cartão de Crédito
+                                                <input type="radio" name="forma_pgto" id="optionsRadios1" value="<?php echo $pgto->id; ?>" checked=""><?php echo $pgto->tipo; ?>
                                             </label>
-                                        </div>
-                                        <div class="radio radio-primary">
+                                            <?php } else { ?>
                                             <label>
-                                                <input type="radio" name="forma_pgto" id="optionsRadios2" value="debito">
-                                                Cartão de Débito
+                                                <input type="radio" name="forma_pgto" id="optionsRadios1" value="<?php echo $pgto->id; ?>"><?php echo $pgto->tipo; ?>
                                             </label>
+                                            <?php } ?>
                                         </div>
-                                        <div class="radio radio-primary">
-                                            <label>
-                                                <input type="radio" name="forma_pgto" id="optionsRadios2" value="dinheiro">
-                                                Dinheiro
-                                            </label>
-                                        </div>
+                                        <?php } ?>  
                                     </div>
                                 </div>
 
@@ -109,7 +110,7 @@
     });
 
      function adicionarDespesa(){
-        alert("Despesa adicionada com sucesso!");
+        alert("Despesa alterada com sucesso!");
     }
 
     

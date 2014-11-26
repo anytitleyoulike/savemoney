@@ -26,7 +26,7 @@ class Categoria extends \Phalcon\Mvc\Model
         );
     }
 
-     public function initialize(){
+    public function initialize(){
         $this->hasMany("cat_id", "Despesa","catId");
     }
 

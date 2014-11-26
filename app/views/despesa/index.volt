@@ -21,7 +21,7 @@
                         <a href="/savemoney/despesa/add" class="btn btn-material-red">Adicionar Despesas</a>
                         <a href="/savemoney/receita/" class="btn btn-material-lightgreen">Receitas</a>
                         <a href="orcamento.html" class="btn btn-material-lightblue">Orçamento</a>
-                        <a href="busca.html" class="btn btn-default"><i class="mdi-action-search"></i> Busca por categoria</a>
+                        <a href="/savemoney/despesa/despesasPorCategoria" class="btn btn-default"><i class="mdi-action-search"></i> Busca por categoria</a>
                     </div>
                     <div class="col-lg-12">
                         <table class="table table-striped table-hover">
@@ -35,7 +35,7 @@
                             <tbody>
                             {% for despesa in result %}
                             <tr>
-                                <td><a href="/savemoney/despesa/testeUpdate/{{despesa.id}}">{{despesa.descricao}}</a></td>
+                                <td><a href="/savemoney/despesa/update/{{despesa.id}}">{{despesa.descricao}}</a></td>
                                 <td>R$ {{despesa.valor}}</td>
                                 <td><a href="/savemoney/despesa/remove/{{despesa.id}}" onclick="removeDespesa()">Excluir</a></td>
                             </tr>
