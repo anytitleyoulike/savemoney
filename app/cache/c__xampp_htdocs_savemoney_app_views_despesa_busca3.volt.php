@@ -18,49 +18,48 @@
                 <h1>Save Money</h1>
                 <div class="row">
                     <div class="col-lg-12">
-                        <a href="/savemoney/despesa/index" class="btn btn-material-red">Despesas</a>
-                        <a href="/savemoney/receita/index" class="btn btn-material-lightgreen">Receitas</a>
+                        <a href="despesa.html" class="btn btn-material-red">Despesas</a>
+                        <a href="receitas.html" class="btn btn-material-lightgreen">Receitas</a>
                         <a href="orcamento.html" class="btn btn-material-lightblue">Orçamento</a>
-                        <a href="/savemoney/despesa/despesasPorCategoria" class="btn btn-material-lightgrey"><i class="mdi-action-search"></i> Busca por categoria</a>
-                        <a href="/savemoney/despesa/despesasPorFormaPagamento" class="btn btn-default"><i class="mdi-action-search"></i> Busca por Forma de Pagamento</a>
-
+                        <a href="busca.html" class="btn btn-default"><i class="mdi-action-search"></i> Busca por categoria</a>
                     </div>
                     <div class="col-lg-12">
-                        <h2>Despesas por Forma de Pagamento</h2>
+                        <h2>Despesas por Categoria</h2>
                         <table class="table table-striped table-hover">
                            <?php if($condition == true ) { ?>
                            <thead>
                             <tr>
                                 <th>Descricao</th>
                                 <th>Valor</th>
-                                <th>Forma de Pagamento</th>
+                                <th>Categoria</th>
                             </tr>
                             </thead>
                             <tbody>
-                            {% for despesa in result %}
+                            <?php foreach ($result as $despesa) { ?>
                                 <tr align="center">
-                                    <td><a href="/savemoney/despesa/update/{{despesa.id}}">{{despesa.descricao}}</a></td>
-                                    <td>R${{despesa.valor}}</td>
-                                    <td>{{despesa.forma_pgto}}</td>
+                                    <td><a href="/savemoney/despesa/update/<?php echo $despesa->id; ?>"><?php echo $despesa->descricao; ?></a></td>
+                                    <td>R$<?php echo $despesa->valor; ?></td>
+                                    <td><?php echo $despesa->categoria->cat_nome; ?></td>
                                 </tr>
-                            {%endfor%}
+                            <?php } ?>
                             </tbody> 
 
                             <?php } else { ?>
                                 <thead>
                                 <tr>
-                                    <th>Forma de Pagamento</th>
+                                    <th>Categoria</th>
                                     <th>Total</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for despesa in result %}
+                                <?php foreach ($result as $despesa) { ?>
                                     <tr align="center">
-                                        <td><a href="/savemoney/despesa/despesasPorFormaPagamento/{{despesa.forma_pgto}}">{{despesa.forma_pgto}}</td>
-                                        <td>R${{despesa.sumatory}}</td>
+                                        <td><a href="/savemoney/despesa/busca3/<?php echo $despesa->cat_nome; ?>"><?php echo $despesa->cat_nome; ?></td>
+                                        <td>R$<?php echo $despesa->total; ?></td>
                                     </tr>
-                                {%endfor%}
-                            </tbody>
+                                <?php } ?>
+                                
+                                </tbody>
                             <?php } ?>
                         </table>
                     </div>

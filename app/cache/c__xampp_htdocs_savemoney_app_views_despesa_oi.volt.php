@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-<form name='add' method="post" action="/savemoney/despesa/add">
+<form name='add' method="post" action="/savemoney/despesa/update">
 <div class="container">
     <div class="row">
         <div class="col-md-offset-2 col-lg-8">
@@ -34,17 +34,17 @@
                     <div class="col-lg-12">
                         <form class="form-horizontal">
                             <fieldset>
-                                <legend>Alterar Despesa</legend>
+                                <legend>Adicionar Despesa</legend>
                                 <div class="form-group">
                                     <label for="inputDescrib" class="col-lg-2 control-label">Descrição</label>
                                     <div class="col-lg-10">
-                                        <input type="text" class="form-control" name="descricao" value="<?php echo $despesa->descricao; ?>"id="inputDescrib" placeholder="Descreva a despesa">
+                                        <input type="text" class="form-control" name="descricao" id="inputDescrib" placeholder="Descreva a despesa">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputValue" class="col-lg-2 control-label">Valor</label>
                                     <div class="col-lg-10">
-                                        <input type="number" name="valor" class="form-control" id="inputValue" value="<?php echo $despesa->valor; ?>" placeholder="Valor da despesa">
+                                        <input type="number" name="valor" class="form-control" id="inputValue" placeholder="Valor da despesa">
                                     </div>
                                 </div>
                                 <div class="form-group">

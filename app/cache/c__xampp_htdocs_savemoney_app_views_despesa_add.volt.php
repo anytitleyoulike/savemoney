@@ -1,50 +1,119 @@
-<html> 
-	<head>
-		<h1>Adicionar Despesa</h1>
-	</head>
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
 
-	<body>
-		<form name='add' method="post" action="/savemoney/despesa/add">
-			<table border="1">
-				<tr>
-					<td>Descrição: <?php echo $this->tag->textField(array('descricao')); ?></td>
-				</tr>
-				<tr>
-					<td>Valor: <?php echo $this->tag->textField(array('valor')); ?></td>
-				</tr>
-				<tr>
-					<td>Categoria:
-						<select name="categoria">
-							<option value="">Selecione..</option>
-							<?php foreach ($categoria as $cat) { ?>
-								<option value="<?php echo $cat->cat_id; ?>"><?php echo $cat->cat_nome; ?></option>
-							<?php } ?>	
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td>Forma de Pagamento:
-						<select name="forma_pgto">
-							<option value="credito">Cartão de Crédito</option>
-							<option value="debito">Cartão de Débito</option>
-							<option value="dinheiro">À Vista</option>
-						</select>
-					</td>
-				</tr>
-			</table>
-			<?php echo $this->tag->submitButton(array('Adicionar', 'onclick' => 'adicionarDespesa()')); ?>
-			<?php echo $this->tag->linkTo(array('despesa/index/', 'Voltar')); ?>
-		</form>
-	</body>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/ripples.min.css" rel="stylesheet">
+    <link href="../css/material-wfont.min.css" rel="stylesheet">
 
-</html>
+    <style>
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<form name='add' method="post" action="/savemoney/despesa/add">
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-2 col-lg-8">
+            <div class="well">
+                <h1>Save Money</h1>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <a href="/savemoney/despesa/index" class="btn btn-material-red">Despesas</a>
+                        <a href="receitas.html" class="btn btn-material-lightgreen">Receitas</a>
+                        <a href="orcamento.html" class="btn btn-material-lightblue">Orçamento</a>
+                        <a href="/savemoney/despesa/busca3" class="btn btn-default"><i class="mdi-action-search"></i> Busca por categoria</a>
+                    </div>
+                    <div class="col-lg-12">
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <legend>Adicionar Despesa</legend>
+                                <div class="form-group">
+                                    <label for="inputDescrib" class="col-lg-2 control-label">Descrição</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" name="descricao" id="inputDescrib" placeholder="Descreva a despesa">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputValue" class="col-lg-2 control-label">Valor</label>
+                                    <div class="col-lg-10">
+                                        <input type="number" name="valor" class="form-control" id="inputValue" placeholder="Valor da despesa">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="select" class="col-lg-2 control-label">Categoria</label>
+                                    <div class="col-lg-10">
+                                        <select class="form-control" name="categoria" id="select">
+                                            <?php foreach ($categoria as $cat) { ?>
+                                                <option value="<?php echo $cat->cat_id; ?>"><?php echo $cat->cat_nome; ?></option>
+                                            <?php } ?>  
+                                        </select>
 
-<script type="text/javascript">
-	function removeDespesa(){
-		alert("Despesa removida com sucesso!");
-	}
+                                    </div>
+                                </div>
 
-	function adicionarDespesa(){
-		alert("Despesa adicionada com sucesso!");
-	}
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Forma de pagamento</label>
+                                    <div class="col-lg-10">
+                                        <div class="radio radio-primary">
+                                            <label>
+                                                <input type="radio" name="forma_pgto" id="optionsRadios1" value="credito" checked="">
+                                                Cartão de Crédito
+                                            </label>
+                                        </div>
+                                        <div class="radio radio-primary">
+                                            <label>
+                                                <input type="radio" name="forma_pgto" id="optionsRadios2" value="debito">
+                                                Cartão de Débito
+                                            </label>
+                                        </div>
+                                        <div class="radio radio-primary">
+                                            <label>
+                                                <input type="radio" name="forma_pgto" id="optionsRadios2" value="dinheiro">
+                                                Dinheiro
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-lg-10 col-lg-offset-2">
+                                        <button class="btn btn-default">Voltar</button>
+                                        <button type="submit" class="btn btn-primary" onClick="adicionarDespesa()">Salvar</button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<script src="../js/ripples.min.js"></script>
+<script src="../js/material.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $.material.init();
+    });
+
+     function adicionarDespesa(){
+        alert("Despesa adicionada com sucesso!");
+    }
+
+    
 </script>
+
+</body>
+</html>
