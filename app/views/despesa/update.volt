@@ -83,11 +83,11 @@
                                         {%endfor%}  
                                     </div>
                                 </div>
-
+                                <input type="hidden" name="id" value="{{despesa.id}}">
                                 <div class="form-group">
                                     <div class="col-lg-10 col-lg-offset-2">
                                         <button class="btn btn-default">Voltar</button>
-                                        <button type="submit" class="btn btn-primary" onClick="adicionarDespesa()">Salvar</button>
+                                        <button type="submit" class="btn btn-primary" onClick="alterarDespesa()">Alterar Despesa</button>
                                     </div>
                                 </div>
                             </fieldset>
@@ -105,11 +105,8 @@
 <script src="../js/ripples.min.js"></script>
 <script src="../js/material.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $.material.init();
-    });
-
-     function adicionarDespesa(){
+    
+     function alterarDespesa(){
         alert("Despesa alterada com sucesso!");
     }
 

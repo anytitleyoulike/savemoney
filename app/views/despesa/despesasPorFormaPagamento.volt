@@ -29,7 +29,7 @@
                         <h2>Despesas por Forma de Pagamento</h2>
                         <table class="table table-striped table-hover">
                            <?php if($condition == true ) { ?>
-                           <thead>
+                           <thead align="center">
                             <tr>
                                 <th>Descricao</th>
                                 <th>Valor</th>
@@ -38,7 +38,7 @@
                             </thead>
                             <tbody>
                             {% for despesa in result %}
-                                <tr align="center">
+                                <tr>
                                     <td><a href="/savemoney/despesa/update/{{despesa.id}}">{{despesa.descricao}}</a></td>
                                     <td>R${{despesa.valor}}</td>
                                     <td>{{despesa.formapgto.tipo}}</td>
@@ -47,7 +47,7 @@
                             </tbody> 
 
                             <?php } else { ?>
-                                <thead>
+                                <thead align="center">
                                 <tr>
                                     <th>Forma de Pagamento</th>
                                     <th>Total</th>
@@ -55,13 +55,18 @@
                                 </thead>
                                 <tbody>
                                 {% for despesa in result %}
-                                    <tr align="center">
+                                    <tr>
                                         <td><a href="/savemoney/despesa/despesasPorFormaPagamento/{{despesa.tipo}}">{{despesa.tipo}}</td>
                                         <td>R${{despesa.total}}</td>
                                     </tr>
                                 {%endfor%}
                             </tbody>
                             <?php } ?>
+                               
+                                <tr>
+                                    <th>Total Gasto:</th>
+                                    <th>R${{totalGasto}}</th>
+                                </tr>
                         </table>
                     </div>
                 </div>

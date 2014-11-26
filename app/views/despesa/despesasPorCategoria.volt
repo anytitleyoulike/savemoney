@@ -38,7 +38,7 @@
                             </thead>
                             <tbody>
                             {% for despesa in result %}
-                                <tr align="center">
+                                <tr>
                                     <td><a href="/savemoney/despesa/update/{{despesa.id}}">{{despesa.descricao}}</a></td>
                                     <td>R${{despesa.valor}}</td>
                                     <td>{{despesa.categoria.cat_nome}}</td>
@@ -55,13 +55,17 @@
                                 </thead>
                                 <tbody>
                                 {% for despesa in result %}
-                                    <tr align="center">
+                                    <tr>
                                         <td><a href="/savemoney/despesa/despesasPorCategoria/{{despesa.cat_nome}}">{{despesa.cat_nome}}</td>
                                         <td>R${{despesa.total}}</td>
                                     </tr>
                                 {%endfor%}
                             </tbody>
                             <?php } ?>
+                            <tr>
+                                    <th>Total Gasto:</th>
+                                    <th>R${{totalGasto}}</th>
+                                </tr>
                         </table>
                     </div>
                 </div>

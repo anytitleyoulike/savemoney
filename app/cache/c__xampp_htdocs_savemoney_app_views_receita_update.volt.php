@@ -1,32 +1,85 @@
-<html> 
-	
-	<head>
-		<h1>Alterar Receita</h1>
-	</head>
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
 
-	<body>
-		<!-- <form name='updateReceita' method="post" action="/savemoney/Receita/update"> -->
-		<?php echo $this->tag->form(array('receita/update/', 'id' => 'updateReceita', 'method' => 'post')); ?>
-			<table border="1">
-				<tr>
-					<td>Descrição: <?php echo $this->tag->textField(array('descricao', 'value' => $receita->descricao)); ?></td>
-				</tr>
-				<tr>
-					<td>Valor: <?php echo $this->tag->textField(array('valor', 'value' => $receita->valor)); ?></td>
-				</tr>
-			</table>
-			
-			<?php echo $this->tag->submitButton(array('Atualizar Receita', 'onclick' => 'alterarReceita()')); ?>
-	
-		<input type="hidden" name="id" value="<?php echo $receita->id; ?>">
-		</form>
-	</body>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/ripples.min.css" rel="stylesheet">
+    <link href="../css/material-wfont.min.css" rel="stylesheet">
 
-</html>
+    <style>
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<form name='add' method="post" action="/savemoney/receita/update">
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-2 col-lg-8">
+            <div class="well">
+                <h1>Save Money</h1>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <a href="/savemoney/despesa/index" class="btn btn-material-red">Despesas</a>
+                        <a href="/savemoney/receita/index" class="btn btn-material-lightgreen">Receitas</a>
+                        <a href="orcamento.html" class="btn btn-material-lightblue">Orçamento</a>
+                        <a href="/savemoney/despesa/despesasPorCategoria" class="btn btn-default"><i class="mdi-action-search"></i> Busca por categoria</a>
+                    </div>
+                    <div class="col-lg-12">
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <legend>Atualizar Receita</legend>
 
-<script type="text/javascript">
+                                <div class="form-group">
+                                    <label for="inputDescrib" class="col-lg-2 control-label">Descrição</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" name="descricao" id="inputDescrib" value="<?php echo $receita->descricao; ?>"placeholder="Descreva a receita">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputValue" class="col-lg-2 control-label">Valor</label>
+                                    <div class="col-lg-10">
+                                        <input type="number" name="valor" class="form-control" id="inputValue" value="<?php echo $receita->valor; ?>" placeholder="Valor da receita">
+                                    </div>
+                                </div>
+                                <input type="hidden" name="id" value="<?php echo $receita->id; ?>">
+                                <div class="form-group">
+                                    <div class="col-lg-10 col-lg-offset-2">
+                                        <button class="btn btn-default">Voltar</button>
+                                        <button type="submit" class="btn btn-primary" onClick="atualizarReceita()">Atualizar Receita</button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-	function alterarReceita(){
-		alert("Receita alterada com sucesso!");
-	}
+<script src="../js/ripples.min.js"></script>
+<script src="../js/material.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $.material.init();
+    });
+
+     function adicionarDespesa(){
+        alert("Receita atualizada com sucesso!");
+    }
+
+    
 </script>
+
+</body>
+</html>

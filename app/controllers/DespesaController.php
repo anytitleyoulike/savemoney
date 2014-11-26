@@ -124,8 +124,14 @@ class DespesaController extends \Phalcon\Mvc\Controller
                                                  order by total DESC", $this->getDI());
             
             $result = $query->execute();
+
+            foreach ($result as $value) {
+                   $totalGasto += $value->total;
+            }
+
             $this->view->condition = false;
             $this->view->result = $result;
+            $this->view->totalGasto = $totalGasto;
         }
 
     }
@@ -136,9 +142,9 @@ class DespesaController extends \Phalcon\Mvc\Controller
     
         $despesa->delete();
 
-            $response = new \Phalcon\Http\Response();
-            $response->redirect('despesa/index');
-            $response->send();
+        $response = new \Phalcon\Http\Response();
+        $response->redirect('despesa/index');
+        $response->send();
 
     }
     
@@ -188,19 +194,29 @@ class DespesaController extends \Phalcon\Mvc\Controller
                                                  order by total DESC", $this->getDI());
             
             $result = $query->execute();
+
+            //acumula o montante de cada categoria e gera um resultado total.
+            foreach ($result as $value) {
+                   $totalGasto += $value->total;
+            }
+
             $this->view->result = $result;
+            $this->view->totalGasto = $totalGasto;
             $this->view->condition = false;
         }
     }
     public function testeAction() {
-            $result = new Phalcon\Mvc\Model\Query("select Categoria.cat_nome,Categoria.cat_id, sum(Despesa.valor) as total from Despesa
-                                                 INNER JOIN Categoria
-                                                 group by cat_nome
+          $query = new Phalcon\Mvc\Model\Query("select FormaPgto.tipo,FormaPgto.id, sum(Despesa.valor) as total from Despesa
+                                                 INNER JOIN FormaPgto
+                                                 group by tipo
                                                  order by total DESC", $this->getDI());
-        foreach ($result as $value) {
-            var_dump($value);
-            # code...
-        }
+            
+            $result = $query->execute();
+
+            foreach ($result as $value) {
+                  var_dump($value->total);
+            }
+
     }
 }
 
