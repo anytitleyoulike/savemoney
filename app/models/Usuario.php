@@ -9,7 +9,7 @@ class Usuario extends \Phalcon\Mvc\Model
      *
      * @var integer
      */
-    public $id;
+    public $usu_id;
 
     /**
      *
@@ -54,11 +54,16 @@ class Usuario extends \Phalcon\Mvc\Model
     public function columnMap()
     {
         return array(
-            'id' => 'id', 
+            'id' => 'usu_id', 
             'nome' => 'nome', 
             'email' => 'email', 
             'senha' => 'senha'
         );
+    }
+
+    public function initialize() {
+        $this->belongsTo("usu_id","Despesa","id");
+        $this->belongsTo("usu_id","Receita","id");
     }
 
 }

@@ -50,6 +50,7 @@ class Despesa extends \Phalcon\Mvc\Model
     public function initialize() {
         $this->belongsTo("catId","Categoria","cat_id");
         $this->belongsTo("forma_pgto","FormaPgto","id");
+        $this->belongsTo("usuId","Usuario", "usu_id");
     }
     public function columnMap()
     {

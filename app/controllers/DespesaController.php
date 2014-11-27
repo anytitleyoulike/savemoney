@@ -81,36 +81,14 @@ class DespesaController extends \Phalcon\Mvc\Controller
         }
     }
     
-   
-    public function busca2Action($categoria){
-        
-        if($categoria) {
-            $result = Despesa::query()
-                ->where("cat_nome = :categoria:")
-                ->innerjoin("Categoria")
-                ->bind(array("categoria" => $categoria))
-                ->execute();
-
-            $this->view->condition = true;
-            $this->view->result = $result;
-        } else {
-            
-            $query = new Phalcon\Mvc\Model\Query("select Categoria.cat_nome,Categoria.cat_id, sum(Despesa.valor) as total from Despesa
-                                                 INNER JOIN Categoria
-                                                 group by cat_nome
-                                                 order by total DESC", $this->getDI());
-            
-            $result = $query->execute();
-            $this->view->condition = $categoria;
-            $this->view->result = $result;
-        }
-    }
+  
 
     public function despesasPorCategoriaAction($categoria = false) {
         if($categoria) {
         $result = Despesa::query()
-                ->where("cat_nome = :categoria:")
                 ->innerjoin("Categoria")
+                ->innerjoin("Usuario")
+                ->where("cat_nome = :categoria: AND usu_id = 2")
                 ->bind(array("categoria" => $categoria))
                 ->execute();
 
@@ -148,38 +126,13 @@ class DespesaController extends \Phalcon\Mvc\Controller
 
     }
     
-
-    public function busca3Action($categoria = false)
-    {
-        if($categoria) {
-            $result = Despesa::query()
-                ->where("cat_nome = :categoria:")
-                ->innerjoin("Categoria")
-                ->bind(array("categoria" => $categoria))
-                ->execute();
-
-            $this->view->condition = true;
-            $this->view->result = $result;
-        } else {
-            
-            $query = new Phalcon\Mvc\Model\Query("select Categoria.cat_nome,Categoria.cat_id, sum(Despesa.valor) as total from Despesa
-                                                 INNER JOIN Categoria
-                                                 group by cat_nome
-                                                 order by total DESC", $this->getDI());
-            
-            $result = $query->execute();
-            $this->view->condition = $categoria;
-            $this->view->result = $result;
-        }
-            
-    }
-
+ 
     public function despesasPorFormaPagamentoAction($pagamento = false) 
     {
         if($pagamento) {
             $result = Despesa::query()
-                ->where("tipo = :pagamento:")
                 ->innerjoin("FormaPgto")
+                ->where("tipo = :pagamento: AND usu_id = 2")
                 ->bind(array("pagamento" => $pagamento))
                 ->execute();
 

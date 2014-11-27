@@ -25,8 +25,13 @@
                         <a href="/savemoney/despesa/despesasPorFormaPagamento" class="btn btn-default"><i class="mdi-action-search"></i> Busca por Forma de Pagamento</a>
 
                     </div>
-                    <div class="col-lg-12">
-                        <h2>Despesas por Categoria</h2>
+                </div>
+
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        <h1 class="panel-title">Despesas por Categoria</h1>
+                    </div>
+                    <div class="panel-body">
                         <table class="table table-striped table-hover">
                            <?php if($condition == true ) { ?>
                            <thead>
@@ -61,14 +66,15 @@
                                     </tr>
                                 {%endfor%}
                             </tbody>
-                            <?php } ?>
-                            <tr>
+                             <tr>
                                     <th>Total Gasto:</th>
                                     <th>R${{totalGasto}}</th>
                                 </tr>
+                            <?php } ?>
+                           
                         </table>
                     </div>
-                </div>
+
             </div>
         </div>
     </div>
