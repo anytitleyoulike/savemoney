@@ -66,11 +66,12 @@
                                     </tr>
                                 {%endfor%}
                             </tbody>
-                            <?php } ?>
-                            <tr>
+                             <tr>
                                     <th>Total Gasto:</th>
                                     <th>R${{totalGasto}}</th>
                                 </tr>
+                            <?php } ?>
+                           
                         </table>
                     </div>
 

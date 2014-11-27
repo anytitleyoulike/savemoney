@@ -66,11 +66,12 @@
                                     </tr>
                                 <?php } ?>
                             </tbody>
-                            <?php } ?>
-                            <tr>
+                             <tr>
                                     <th>Total Gasto:</th>
                                     <th>R$<?php echo $totalGasto; ?></th>
                                 </tr>
+                            <?php } ?>
+                           
                         </table>
                     </div>
 
