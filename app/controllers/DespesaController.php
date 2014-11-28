@@ -132,6 +132,7 @@ class DespesaController extends \Phalcon\Mvc\Controller
         if($pagamento) {
             $result = Despesa::query()
                 ->innerjoin("FormaPgto")
+                ->innerjoin("Usuario")
                 ->where("tipo = :pagamento: AND usu_id = 2")
                 ->bind(array("pagamento" => $pagamento))
                 ->execute();
@@ -143,6 +144,8 @@ class DespesaController extends \Phalcon\Mvc\Controller
         } else {
              $query = new Phalcon\Mvc\Model\Query("select FormaPgto.tipo,FormaPgto.id, sum(Despesa.valor) as total from Despesa
                                                  INNER JOIN FormaPgto
+                                                 INNER JOIN Usuario
+                                                 where usu_id = 2
                                                  group by tipo
                                                  order by total DESC", $this->getDI());
             
