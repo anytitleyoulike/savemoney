@@ -25,55 +25,58 @@
                         <a href="/savemoney/despesa/despesasPorFormaPagamento" class="btn btn-default"><i class="mdi-action-search"></i> Busca por Forma de Pagamento</a>
 
                     </div>
-                    <div class="col-lg-12">
-                        <h2>Despesas por Forma de Pagamento</h2>
-                        <table class="table table-striped table-hover">
-                           <?php if($condition == true ) { ?>
-                           <thead align="center">
+                </div>
+
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        <h1 class="panel-title">Despesas por Forma de Pagamento</h1>
+                    </div>
+                    <table class="table table-striped table-hover">
+                       <?php if($condition == true ) { ?>
+                       <thead align="center">
+                        <tr>
+                            <th>Descricao</th>
+                            <th>Valor</th>
+                            <th>Forma de Pagamento</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for despesa in result %}
                             <tr>
-                                <th>Descricao</th>
-                                <th>Valor</th>
+                                <td><a href="/savemoney/despesa/update/{{despesa.id}}">{{despesa.descricao}}</a></td>
+                                <td>R${{despesa.valor}}</td>
+                                <td>{{despesa.formapgto.tipo}}</td>
+                            </tr>
+                        {%endfor%}
+                        </tbody> 
+
+                        <?php } else { ?>
+                            <thead align="center">
+                            <tr>
                                 <th>Forma de Pagamento</th>
+                                <th>Total</th>
                             </tr>
                             </thead>
                             <tbody>
                             {% for despesa in result %}
                                 <tr>
-                                    <td><a href="/savemoney/despesa/update/{{despesa.id}}">{{despesa.descricao}}</a></td>
-                                    <td>R${{despesa.valor}}</td>
-                                    <td>{{despesa.formapgto.tipo}}</td>
+                                    <td><a href="/savemoney/despesa/despesasPorFormaPagamento/{{despesa.tipo}}">{{despesa.tipo}}</td>
+                                    <td>R${{despesa.total}}</td>
                                 </tr>
                             {%endfor%}
-                            </tbody> 
-
-                            <?php } else { ?>
-                                <thead align="center">
-                                <tr>
-                                    <th>Forma de Pagamento</th>
-                                    <th>Total</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for despesa in result %}
-                                    <tr>
-                                        <td><a href="/savemoney/despesa/despesasPorFormaPagamento/{{despesa.tipo}}">{{despesa.tipo}}</td>
-                                        <td>R${{despesa.total}}</td>
-                                    </tr>
-                                {%endfor%}
-                            </tbody>
-                            <?php } ?>
-                               
-                                <tr>
-                                    <th>Total Gasto:</th>
-                                    <th>R${{totalGasto}}</th>
-                                </tr>
-                        </table>
-                    </div>
-                </div>
+                        </tbody>
+                            <tr>
+                                <th>Total Gasto:</th>
+                                <th>R${{totalGasto}}</th>
+                            </tr>
+                        <?php } ?>
+                           
+                    </table>
             </div>
         </div>
     </div>
 </div>
+
 
 <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
