@@ -28,8 +28,9 @@
                     <div class="col-lg-12">
                         <a href="/savemoney/despesa/index" class="btn btn-material-red">Despesas</a>
                         <a href="/savemoney/receita/index" class="btn btn-material-lightgreen">Receitas</a>
-                        <a href="orcamento.html" class="btn btn-material-lightblue">Orçamento</a>
-                        <a href="/savemoney/despesa/despesasPorCategoria" class="btn btn-default"><i class="mdi-action-search"></i> Busca por categoria</a>
+                        <a href="/savemoney/orcamento/balanco" class="btn btn-material-lightblue">Balanço</a>
+                        <a href="/savemoney/despesa/despesasPorCategoria" class="btn btn-material-orange"><i class="mdi-action-search"></i> Busca por categoria</a>
+                        <a href="/savemoney/despesa/despesasPorFormaPagamento" class="btn btn-material-orange"><i class="mdi-action-search"></i> Busca por Forma de Pagamento</a>
                     </div>
                     <div class="col-lg-12">
                         <form class="form-horizontal">
@@ -66,22 +67,20 @@
                                                     <input type="radio" name="forma_pgto" id="optionsRadios1" value="1">Cartão de Crédito
                                                 </label>
                                             </div>
-                                    </div>
-                                    <div class="col-lg-10">
+                                    
                                             <div class="radio radio-primary">
                                                 <label>
                                                     <input type="radio" name="forma_pgto" id="optionsRadios2" value="2">Cartão de Débito
                                                 </label>
                                             </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-10">
+                                    
                                             <div class="radio radio-primary">
                                                 <label>
                                                     <input type="radio" name="forma_pgto" id="optionsRadios3" value="3">Dinheiro
                                                 </label>
                                             </div>
                                     </div>
+                                </div>
 
 
                                 <div class="form-group">

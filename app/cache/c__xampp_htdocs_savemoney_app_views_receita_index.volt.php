@@ -20,8 +20,9 @@
                     <div class="col-lg-12">
                         <a href="/savemoney/despesa/index" class="btn btn-material-red">Despesas</a>
                         <a href="/savemoney/receita/" class="btn btn-material-lightgreen">Receitas</a>
-                        <a href="orcamento.html" class="btn btn-material-lightblue">Orçamento</a>
-                        <a href="/savemoney/despesa/despesasPorCategoria" class="btn btn-default"><i class="mdi-action-search"></i> Busca por categoria</a>
+                        <a href="/savemoney/orcamento/balanco" class="btn btn-material-lightblue">Balanço</a>
+                        <a href="/savemoney/despesa/despesasPorCategoria" class="btn btn-material-orange"><i class="mdi-action-search"></i> Busca por categoria</a>
+                        <a href="/savemoney/despesa/despesasPorFormaPagamento" class="btn btn-material-orange"><i class="mdi-action-search"></i> Busca por Forma de Pagamento</a>
                     </div>
                     <a href="/savemoney/receita/add" class="btn btn-success btn-raised ">Adicionar Receita</a>
                     <div class="col-lg-12">
