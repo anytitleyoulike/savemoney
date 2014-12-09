@@ -3,7 +3,8 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title></title>
+    <title>Adicionar Receita</title>
+    
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/ripples.min.css" rel="stylesheet">
@@ -29,13 +30,25 @@
                         <a href="/savemoney/despesa/index" class="btn btn-material-red">Despesas</a>
                         <a href="/savemoney/receita/index" class="btn btn-material-lightgreen">Receitas</a>
                         <a href="/savemoney/orcamento/balanco" class="btn btn-material-lightblue">Balanço</a>
-                        <a href="/savemoney/despesa/despesasPorCategoria" class="btn btn-default"><i class="mdi-action-search"></i> Busca por categoria</a>
-                        <a href="/savemoney/despesa/despesasPorFormaPagamento" class="btn btn-default"><i class="mdi-action-search"></i> Busca por Forma de Pagamento</a>
+                        <div class="btn-group">
+                            <a href="javascript:void(0)" class="btn btn-warning"><i class="mdi-action-search"></i>Busca</a>
+                            <a href="javascript:void(0)" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/savemoney/despesa/despesasPorCategoria"></i>por Categoria</a></li>
+                                <li><a href="/savemoney/despesa/despesasPorFormaPagamento"></i>por Forma de Pagamento</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="col-lg-12">
+                </div>
+                    
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Receita</h3>
+                    </div>
+
+                    <div class="panel-body">
                         <form class="form-horizontal">
                             <fieldset>
-                                <legend>Adicionar Receita</legend>
 
                                 <div class="form-group">
                                     <label for="inputDescrib" class="col-lg-2 control-label">Descrição</label>
@@ -58,7 +71,7 @@
                                 </div>
                             </fieldset>
                         </form>
-                    </div>
+                    </div>        
                 </div>
             </div>
         </div>

@@ -29,8 +29,14 @@
                         <a href="/savemoney/despesa/index" class="btn btn-material-red">Despesas</a>
                         <a href="receitas.html" class="btn btn-material-lightgreen">Receitas</a>
                         <a href="/savemoney/orcamento/balanco" class="btn btn-material-lightblue">Balanço</a>
-                        <a href="/savemoney/despesa/despesasPorCategoria" class="btn btn-material-lightgrey"><i class="mdi-action-search"></i> Busca por categoria</a>
-                        <a href="/savemoney/despesa/despesasPorFormaPagamento" class="btn btn-default"><i class="mdi-action-search"></i> Busca por Forma de Pagamento</a>
+                        <div class="btn-group">
+                            <a href="javascript:void(0)" class="btn btn-warning"><i class="mdi-action-search"></i>Busca</a>
+                            <a href="javascript:void(0)" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/savemoney/despesa/despesasPorCategoria"></i>por Categoria</a></li>
+                                <li><a href="/savemoney/despesa/despesasPorFormaPagamento"></i>por Forma de Pagamento</a></li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="col-lg-12">
                         <form class="form-horizontal">
