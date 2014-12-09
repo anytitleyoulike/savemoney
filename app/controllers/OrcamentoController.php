@@ -15,18 +15,12 @@ class OrcamentoController extends \Phalcon\Mvc\Controller
     public function balancoAction() 
     {
     	
-        $totalDespesa = Despesa::sum(array(
-                "column" => "valor",
-                "condition" => "usuId == 2")
-        );
         
-        $totalReceita = Receita::sum(array(
-                "column" => "valor",
-                "condition" => "usuId == 2")
-        );
+        $totalDespesa = $this->calculaTotalDespesas();
+        $totalReceita = $this->calculaTotalReceitas();
 
         $total = $totalDespesa + $totalReceita;
-        
+
     	$porcentagemDespesa = number_format(($totalDespesa/$total)*100,1);
     	$porcentagemReceita = number_format(($totalReceita/$total)*100,1);
     	
@@ -38,18 +32,24 @@ class OrcamentoController extends \Phalcon\Mvc\Controller
         $this->view->balanco = $totalReceita-$totalDespesa;
     }
 
-    public function testeAction() {
-        $a = $this->calculaBalanco();
-        var_dump($a);
+    public function calculaTotalDespesas() 
+    {
+        $totalDespesa = Despesa::sum(array(
+                "column" => "valor",
+                "condition" => "usuId == 2")
+        );
+
+        return $totalDespesa;
     }
-    public function calculaBalanco() {
 
-        
+    public function calculaTotalReceitas() 
+    { 
+        $totalReceita = Receita::sum(array(
+                "column" => "valor",
+                "condition" => "usuId == 2")
+        );
 
-
-        $total = $totalDespesa + $totalReceita;
-        return $total;
-
+        return $totalReceita;
     }
 }
 
