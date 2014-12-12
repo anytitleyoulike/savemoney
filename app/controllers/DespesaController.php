@@ -1,15 +1,13 @@
 <?php
 
-require('C:\xampp\htdocs\savemoney\app\dao\DespesaDao.php');
-
 
 class DespesaController extends \Phalcon\Mvc\Controller
 {
 
+
     public function indexAction()
     {
-
-        $this->view->result = Despesa::findByUsuId(2);
+        $this->view->result = Despesa::findByUsuId($this->session->get('usuId'));
     }
 
 
@@ -18,41 +16,21 @@ class DespesaController extends \Phalcon\Mvc\Controller
         
         $this->view->categoria = Categoria::find();
         
-        $dao = new DespesaDao();
-        
         if($this->request->isPost()) {
+            
             $despesa = new Despesa();
+            
             $despesa->descricao = $this->request->getPost('descricao');
             $despesa->valor = $this->request->getPost('valor');
             $despesa->data = date('Y-m-d');    
             $despesa->catId = $this->request->getPost('categoria');
             $despesa->forma_pgto = $this->request->getPost('forma_pgto');
-            $despesa->usuId = 2;
+            $despesa->usuId = $this->session->get('usuId');
             
-            $dao->addDespesa($despesa);
+            $despesa->save();
        }
     }
 
-
-    public function addDespesaAction()
-    {
-        
-        $this->view->categoria = Categoria::find();
-        
-        $dao = new DespesaDao();
-        
-        if($this->request->isPost()) {
-            $despesa = new Despesa();
-            $despesa->descricao = $this->request->getPost('descricao');
-            $despesa->valor = $this->request->getPost('valor');
-            $despesa->data = date('Y-m-d');    
-            $despesa->catId = $this->request->getPost('categoria');
-            $despesa->forma_pgto = $this->request->getPost('forma_pgto');
-            $despesa->usuId = 2;
-            
-            $dao->addDespesa($despesa);
-       }
-    }
 
     public function updateAction($despesaId) 
     {     
@@ -65,7 +43,7 @@ class DespesaController extends \Phalcon\Mvc\Controller
             $despesa->valor = $this->request->getPost('valor');
             $despesa->catId = $this->request->getPost('categoria');
             $despesa->forma_pgto = $this->request->getPost('forma_pgto');
-            $despesa->usuId = 2;
+            $despesa->usuId = $this->session->get('usuId');
             
             $this->view->despesa = $despesa;
             $despesa->update();
@@ -84,24 +62,20 @@ class DespesaController extends \Phalcon\Mvc\Controller
   
 
     public function despesasPorCategoriaAction($categoria = false) {
+        
+        $usuId = $this->session->get('usuId');
+        $despesa = new Despesa();
+        
         if($categoria) {
-        $result = Despesa::query()
-                ->innerjoin("Categoria")
-                ->innerjoin("Usuario")
-                ->where("cat_nome = :categoria: AND usu_id = 2")
-                ->bind(array("categoria" => $categoria))
-                ->execute();
+
+            $result = $despesa->despesasPorCategoria($categoria, $usuId);
 
             $this->view->condition = true;
             $this->view->result = $result;
+        
         } else {
-            
-            $query = new Phalcon\Mvc\Model\Query("select Categoria.cat_nome,Categoria.cat_id, sum(Despesa.valor) as total from Despesa
-                                                 INNER JOIN Categoria
-                                                 group by cat_nome
-                                                 order by total DESC", $this->getDI());
-            
-            $result = $query->execute();
+
+            $result = $despesa->totalDespesasPorCategoria($usuId);
 
             foreach ($result as $value) {
                    $totalGasto += $value->total;
@@ -129,28 +103,21 @@ class DespesaController extends \Phalcon\Mvc\Controller
  
     public function despesasPorFormaPagamentoAction($pagamento = false) 
     {
+        $usuId = $this->session->get('usuId');
+        $despesa = new Despesa();
+
         if($pagamento) {
-            $result = Despesa::query()
-                ->innerjoin("FormaPgto")
-                ->innerjoin("Usuario")
-                ->where("tipo = :pagamento: AND usu_id = 2")
-                ->bind(array("pagamento" => $pagamento))
-                ->execute();
+            
+            $result = $despesa->despesasPorFormaPagamento($pagamento, $usuId);
 
 
             $this->view->result = $result;
             $this->view->condition = true;
 
         } else {
-             $query = new Phalcon\Mvc\Model\Query("select FormaPgto.tipo,FormaPgto.id, sum(Despesa.valor) as total from Despesa
-                                                 INNER JOIN FormaPgto
-                                                 INNER JOIN Usuario
-                                                 where usu_id = 2
-                                                 group by tipo
-                                                 order by total DESC", $this->getDI());
+             
+            $result = $despesa->totalDespesasPorFormaPagamento($usuId);
             
-            $result = $query->execute();
-
             //acumula o montante de cada categoria e gera um resultado total.
             foreach ($result as $value) {
                    $totalGasto += $value->total;
@@ -161,18 +128,14 @@ class DespesaController extends \Phalcon\Mvc\Controller
             $this->view->condition = false;
         }
     }
+    
     public function testeAction() {
-          $query = new Phalcon\Mvc\Model\Query("select FormaPgto.tipo,FormaPgto.id, sum(Despesa.valor) as total from Despesa
-                                                 INNER JOIN FormaPgto
-                                                 group by tipo
-                                                 order by total DESC", $this->getDI());
+          $usuid = $this->session->get('usuId');
             
-            $result = $query->execute();
-
-            foreach ($result as $value) {
-                  var_dump($value->total);
-            }
-
+            // $a = Despesa::find(array(
+            //     "conditions" => "id = :oi:",
+            //     "bind" => array("oi" => 18)
+            // ));
     }
 }
 

@@ -41,11 +41,13 @@
                         <div class="panel-body">
                             
                             <h3>Despesas</h3>
+                                <div>R$<?php echo $totalDespesas; ?></div>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-material-red" style="width: <?php echo $porcentagemDespesa; ?>%"></div>
                                 </div>
 
                             <h3>Receitas</h3>
+                                <div>R$<?php echo $totalReceitas; ?></div>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-success" style="width: <?php echo $porcentagemReceita; ?>%"></div>
                                 </div>
@@ -54,21 +56,24 @@
 
                     <div class="well well-sm">
                         <?php if ($balanco > 0) { ?>
-                        Balanço: R$<?php echo $balanco; ?> :)
+                        
+                        <div class="alert alert-dismissable alert-success">
+                             Balanço: R$ <?php echo $balanco; ?> :)
+                            <br>
+                                <strong>Muito bem!!</strong> Voce seu balanço é positivo.
+                            </br>
+                        </div>
+
                         <?php } else { ?>
-                        Balanço: R$<?php echo $balanco; ?> :(
+                        
+                        <div class="alert alert-dismissable alert-danger">
+                            Balanço: R$<?php echo $balanco; ?> :(
+                            <br>
+                                <strong>Ah não!!</strong> Voce precisa poupar mais seu dinheiro.
+                            </br>
+                        </div>
                         <?php } ?>
                     </div>
-
-                    <?php if ($totalReceita > $totalDespesa) { ?>
-                        <div class="alert alert-dismissable alert-success">
-                             <strong>Muito bem!!</strong> Voce seu balanço é positivo.
-                        </div>
-                    <?php } else { ?>
-                        <div class="alert alert-dismissable alert-danger">
-                             <strong>Ah não!!</strong> Voce precisa poupar mais seu dinheiro.
-                        </div>
-                    <?php } ?>
             </div>
         </div>
     </div>

@@ -5,7 +5,8 @@ class ReceitaController extends \Phalcon\Mvc\Controller
 
     public function indexAction()
     {
-    	$this->view->result = Receita::findByUsuId(2);
+
+    	$this->view->result = Receita::findByUsuId($this->session->get('usuId'));
     }
 
     public function addAction()
@@ -18,7 +19,7 @@ class ReceitaController extends \Phalcon\Mvc\Controller
             $receita->descricao = $this->request->getPost('descricao');
             $receita->valor = $this->request->getPost('valor');
             $receita->data = date('Y-m-d');    
-            $receita->usuId = 2;
+            $receita->usuId = $this->session->get('usuId');
 
             $receita->save();
 
@@ -37,7 +38,7 @@ class ReceitaController extends \Phalcon\Mvc\Controller
             
             $receita->descricao = $this->request->getPost('descricao');
             $receita->valor = $this->request->getPost('valor');
-            $receita->usuId = 2;
+            $receita->usuId = $this->session->get('usuId');
             
             $this->view->receita = $receita;
             $receita->update();
@@ -62,6 +63,7 @@ class ReceitaController extends \Phalcon\Mvc\Controller
         $response = new \Phalcon\Http\Response();
         $response->redirect('receita/index');
         $response->send();
+
     }
 
 }

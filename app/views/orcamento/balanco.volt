@@ -41,11 +41,13 @@
                         <div class="panel-body">
                             
                             <h3>Despesas</h3>
+                                <div>R${{totalDespesas}}</div>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-material-red" style="width: {{porcentagemDespesa}}%"></div>
                                 </div>
 
                             <h3>Receitas</h3>
+                                <div>R${{totalReceitas}}</div>
                                 <div class="progress">
                                     <div class="progress-bar progress-bar-success" style="width: {{porcentagemReceita}}%"></div>
                                 </div>
@@ -54,21 +56,24 @@
 
                     <div class="well well-sm">
                         {%if balanco > 0 %}
-                        Balanço: R${{balanco}} :)
+                        
+                        <div class="alert alert-dismissable alert-success">
+                             Balanço: R$ {{balanco}} :)
+                            <br>
+                                <strong>Muito bem!!</strong> Voce seu balanço é positivo.
+                            </br>
+                        </div>
+
                         {%else%}
-                        Balanço: R${{balanco}} :(
+                        
+                        <div class="alert alert-dismissable alert-danger">
+                            Balanço: R${{balanco}} :(
+                            <br>
+                                <strong>Ah não!!</strong> Voce precisa poupar mais seu dinheiro.
+                            </br>
+                        </div>
                         {%endif%}
                     </div>
-
-                    {% if totalReceita > totalDespesa %}
-                        <div class="alert alert-dismissable alert-success">
-                             <strong>Muito bem!!</strong> Voce seu balanço é positivo.
-                        </div>
-                    {%else %}
-                        <div class="alert alert-dismissable alert-danger">
-                             <strong>Ah não!!</strong> Voce precisa poupar mais seu dinheiro.
-                        </div>
-                    {%endif%}
             </div>
         </div>
     </div>

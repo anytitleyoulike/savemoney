@@ -47,4 +47,18 @@ class Receita extends \Phalcon\Mvc\Model
         );
     }
 
+
+    public function totalReceitasPorUsuario($usuId) {
+
+        $query = new Phalcon\Mvc\Model\Query("select sum(Receita.valor) as total from Receita
+                                                INNER JOIN Usuario on Usuario.usu_id = Receita.usuId
+                                                where Usuario.usu_id = :usuId:", $this->getDI());
+        
+        $result = $query->execute(array("usuId" => $usuId));
+        
+        foreach ($result as $value) {
+            return $value->total;
+        }
+    }
+
 }

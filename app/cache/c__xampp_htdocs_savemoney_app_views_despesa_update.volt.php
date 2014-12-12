@@ -51,7 +51,7 @@
                                 <div class="form-group">
                                     <label for="inputValue" class="col-lg-2 control-label">Valor</label>
                                     <div class="col-lg-10">
-                                        <input type="number" name="valor" class="form-control" id="inputValue" value="<?php echo $despesa->valor; ?>" placeholder="Valor da despesa">
+                                        <input type="text" name="valor" class="form-control" id="inputValue" value="<?php echo $despesa->valor; ?>" placeholder="Valor da despesa">
                                     </div>
                                 </div>
                                 <div class="form-group">

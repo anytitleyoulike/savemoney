@@ -46,6 +46,7 @@
                                 <th>Categoria</th>
                             </tr>
                             </thead>
+                             <input type="hidden" id="oi" value="true">   
                             <tbody>
                             <?php foreach ($result as $despesa) { ?>
                                 <tr>
@@ -57,13 +58,15 @@
                             </tbody> 
 
                             <?php } else { ?>
-                                <thead>
+                            <thead>
                                 <tr>
                                     <th>Categoria</th>
                                     <th>Total</th>
                                 </tr>
-                                </thead>
-                                <tbody>
+                            </thead>
+                            
+                                <input type="hidden" id="oi" value="false">
+                            <tbody>
                                 <?php foreach ($result as $despesa) { ?>
                                     <tr>
                                         <td><a href="/savemoney/despesa/despesasPorCategoria/<?php echo $despesa->cat_nome; ?>"><?php echo $despesa->cat_nome; ?></td>
@@ -71,15 +74,14 @@
                                     </tr>
                                 <?php } ?>
                             </tbody>
-                             <tr>
+                                <tr>
                                     <th>Total Gasto:</th>
                                     <th>R$<?php echo $totalGasto; ?></th>
                                 </tr>
                             <?php } ?>
-                           
                         </table>
+                      <button class="btn btn-flat btn-default" onClick="goBack()">Voltar</button> 
                     </div>
-
             </div>
         </div>
     </div>
@@ -94,6 +96,17 @@
     $(document).ready(function() {
         $.material.init();
     });
+
+    function goBack() {
+        var condition = document.getElementById('oi').value;
+     
+        if(condition === "true") {
+           window.location.href = "/savemoney/despesa/despesasPorCategoria"; 
+        } else {
+            window.location.href = "/savemoney/despesa/index";
+        }
+    }
+
 </script>
 </body>
 </html>

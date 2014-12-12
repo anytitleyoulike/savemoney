@@ -43,7 +43,7 @@
                     
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Receita</h3>
+                        <h3 class="panel-title">Receitas</h3>
                     </div>
 
                     <div class="panel-body">
@@ -59,7 +59,7 @@
                                 <div class="form-group">
                                     <label for="inputValue" class="col-lg-2 control-label">Valor</label>
                                     <div class="col-lg-10">
-                                        <input type="number" name="valor" class="form-control" id="inputValue" placeholder="Valor da receita">
+                                        <input type="text" name="valor" class="form-control" id="inputValue" placeholder="Valor da receita">
                                     </div>
                                 </div>
 
