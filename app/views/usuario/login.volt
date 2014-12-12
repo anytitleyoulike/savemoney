@@ -25,7 +25,10 @@
                     <form name='login' class="form-horizontal" method="post" action="/savemoney/usuario/login">
                         <h1>Savemoney</h1>
                         <div class="panel panel-default">
-                            <div class="panel-heading">Login</div>
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Login</h3>
+                            </div>
+
                                 <div class="panel-body">
                                     <fieldset>
                                         <div class="form-group">
