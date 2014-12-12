@@ -29,7 +29,7 @@
                                 <li><a href="/savemoney/despesa/despesasPorFormaPagamento"></i>por Forma de Pagamento</a></li>
                             </ul>
                         </div>
-                        <a href="/savemoney/despesa/add" class="btn btn-material-red">Adicionar Despesas</a>
+                        <a href="/savemoney/despesa/add" class="btn btn-material-red">Adicionar Despesa</a>
                     </div>
                 </div>
                     <div class="panel panel-danger">
@@ -48,7 +48,7 @@
                                     </thead>
                                     <tbody>
                                     <?php foreach ($result as $despesa) { ?>
-                                    <tr>
+                                    <tr class="danger">
                                         <td><a href="/savemoney/despesa/update/<?php echo $despesa->id; ?>"><?php echo $despesa->descricao; ?></a></td>
                                         <td>R$ <?php echo $despesa->valor; ?></td>
                                         <td><a href="/savemoney/despesa/remove/<?php echo $despesa->id; ?>" onclick="removeDespesa()">Excluir</a></td>

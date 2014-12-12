@@ -115,4 +115,16 @@ class Despesa extends \Phalcon\Mvc\Model
         return $query->execute(array("usuId" => $usuId));
     }
 
+    public function totalDespesasPorUsuario($usuId) {
+
+        $query = new Phalcon\Mvc\Model\Query("select usu_id, sum(Despesa.valor) as total from Despesa
+                                                INNER JOIN Usuario
+                                                where usu_id = :usuId:", $this->getDI());
+        
+        $result = $query->execute(array("usuId" => $usuId));
+        
+        foreach ($result as $value) {
+            return $value->total;
+        }
+    }
 }

@@ -49,7 +49,7 @@
                                 </thead>
                                 <tbody>
                                 {% for receita in result %}
-                                <tr>
+                                <tr class="success">
                                     <td><a href="/savemoney/receita/update/{{receita.id}}">{{receita.descricao}}</a></td>
                                     <td>R$ {{receita.valor}}</td>
                                     <td><a href="/savemoney/receita/remove/{{receita.id}}" onclick="removeReceita()">Excluir</a></td>

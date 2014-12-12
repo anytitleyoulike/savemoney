@@ -1,23 +1,75 @@
-<html> 
-	<head>
-		<h1>Adicionar Usuario</h1>
-	</head>
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+ 
 
-	<body>
-		<form name='addUser' method="post" action="/savemoney/usuario/add">
-			<table border="1">
-				<tr>
-					<td>Nome: {{text_field('nome')}}</td>
-				</tr>
-				<tr>
-					<td>Email: {{text_field('email')}}</td>
-				</tr>
-				<tr>
-					<td>Senha: {{password_field('senha')}}</td>
-				</tr>
-			</table>
-			{{submit_button('Adicionar')}}
-		</form>
-	</body>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/ripples.min.css" rel="stylesheet">
+    <link href="../css/material-wfont.min.css" rel="stylesheet">
 
+    <style>
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-2 col-lg-8">
+                <div class="well">     
+                    <form name='login' class="form-horizontal" method="post" action="/savemoney/usuario/add">
+                        <fieldset>
+                            <legend>Cadastro</legend>
+                            <div class="form-group">
+                                <label for="inputEmail" class="col-lg-2 control-label">Nome</label>
+                                <div class="col-lg-10">
+                                    <input type="text" class="form-control" name="nome" placeholder="Nome">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+                                <div class="col-lg-10">
+                                    <input type="email" class="form-control" name="email" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword" class="col-lg-2 control-label">Senha</label>
+                                <div class="col-lg-10">
+                                    <input type="password" class="form-control" name="senha" placeholder="Senha">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-10 col-lg-offset-2">
+                                    <button class="btn btn-default" type="reset">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Enviar</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<script src="../js/ripples.min.js"></script>
+<script src="../js/material.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $.material.init();
+    });
+
+     function adicionarUsuario(){
+        alert("Usuário cadastrado com sucesso!");
+    }
+
+</script>
+
+</body>
 </html>

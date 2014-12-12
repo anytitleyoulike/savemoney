@@ -63,6 +63,7 @@ class ReceitaController extends \Phalcon\Mvc\Controller
         $response = new \Phalcon\Http\Response();
         $response->redirect('receita/index');
         $response->send();
+
     }
 
 }

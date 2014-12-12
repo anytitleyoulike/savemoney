@@ -49,7 +49,7 @@
                                 </thead>
                                 <tbody>
                                 <?php foreach ($result as $receita) { ?>
-                                <tr>
+                                <tr class="success">
                                     <td><a href="/savemoney/receita/update/<?php echo $receita->id; ?>"><?php echo $receita->descricao; ?></a></td>
                                     <td>R$ <?php echo $receita->valor; ?></td>
                                     <td><a href="/savemoney/receita/remove/<?php echo $receita->id; ?>" onclick="removeReceita()">Excluir</a></td>

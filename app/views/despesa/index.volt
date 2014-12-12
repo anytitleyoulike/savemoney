@@ -29,7 +29,7 @@
                                 <li><a href="/savemoney/despesa/despesasPorFormaPagamento"></i>por Forma de Pagamento</a></li>
                             </ul>
                         </div>
-                        <a href="/savemoney/despesa/add" class="btn btn-material-red">Adicionar Despesas</a>
+                        <a href="/savemoney/despesa/add" class="btn btn-material-red">Adicionar Despesa</a>
                     </div>
                 </div>
                     <div class="panel panel-danger">
@@ -48,7 +48,7 @@
                                     </thead>
                                     <tbody>
                                     {% for despesa in result %}
-                                    <tr>
+                                    <tr class="danger">
                                         <td><a href="/savemoney/despesa/update/{{despesa.id}}">{{despesa.descricao}}</a></td>
                                         <td>R$ {{despesa.valor}}</td>
                                         <td><a href="/savemoney/despesa/remove/{{despesa.id}}" onclick="removeDespesa()">Excluir</a></td>

@@ -15,41 +15,36 @@ class OrcamentoController extends \Phalcon\Mvc\Controller
     public function balancoAction() 
     {
     	
-        
-        $totalDespesa = $this->calculaTotalDespesas();
-        $totalReceita = $this->calculaTotalReceitas();
+        $despesa = new Despesa();
+        $receita = new Receita();
 
-        $total = $totalDespesa + $totalReceita;
+        $totalDespesas = $despesa->totalDespesasPorUsuario($this->session->get('usuId'));
+         
+        $totalReceitas = $receita->totalReceitasPorUsuario($this->session->get('usuId'));
 
-    	$porcentagemDespesa = number_format(($totalDespesa/$total)*100,1);
-    	$porcentagemReceita = number_format(($totalReceita/$total)*100,1);
+        // montante total do usuário para calculo da porcentagem
+        $total = $totalDespesas + $totalReceitas;
+
+    	$porcentagemDespesa = number_format(($totalDespesas/$total)*100,1);
+    	$porcentagemReceita = number_format(($totalReceitas/$total)*100,1);
     	
     	$this->view->porcentagemDespesa = $porcentagemDespesa;
     	$this->view->porcentagemReceita = $porcentagemReceita;
 
-        $this->view->totalDespesa = $totalDespesa;
-        $this->view->totalReceita = $totalReceita;
-        $this->view->balanco = $totalReceita-$totalDespesa;
+        $this->view->totalDespesas = $totalDespesas;
+        $this->view->totalReceitas = $totalReceitas;
+        $this->view->balanco = $totalReceitas-$totalDespesas;
     }
 
-    public function calculaTotalDespesas() 
-    {
-        $totalDespesa = Despesa::sum(array(
-                "column" => "valor",
-                "condition" => "usuId == 2")
-        );
+    public function testeAction() {
+        $despesa  = new Despesa();
+        $receita = new Receita();
 
-        return $totalDespesa;
-    }
-
-    public function calculaTotalReceitas() 
-    { 
-        $totalReceita = Receita::sum(array(
-                "column" => "valor",
-                "condition" => "usuId == 2")
-        );
-
-        return $totalReceita;
+        $totalDespesas = $despesa->totalDespesasPorUsuario($this->session->get('usuId'));
+         
+        $totalReceitas = $receita->totalReceitasPorUsuario(6);
+        
+        var_dump($totalReceitas);
     }
 }
 
