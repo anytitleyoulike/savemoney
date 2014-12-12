@@ -45,6 +45,7 @@
                             <th>Forma de Pagamento</th>
                         </tr>
                         </thead>
+                        <input type="hidden" id="oi" value="true">
                         <tbody>
                         <?php foreach ($result as $despesa) { ?>
                             <tr>
@@ -62,6 +63,7 @@
                                 <th>Total</th>
                             </tr>
                             </thead>
+                            <input type="hidden" id="oi" value="false">
                             <tbody>
                             <?php foreach ($result as $despesa) { ?>
                                 <tr>
@@ -75,8 +77,8 @@
                                 <th>R$<?php echo $totalGasto; ?></th>
                             </tr>
                         <?php } ?>
-                           
                     </table>
+                    <button class="btn btn-flat btn-default" onClick="goBack()">Voltar</button> 
             </div>
         </div>
     </div>
@@ -92,6 +94,16 @@
     $(document).ready(function() {
         $.material.init();
     });
+
+    function goBack() {
+        var condition = document.getElementById('oi').value;
+     
+        if(condition === "true") {
+           window.location.href = "/savemoney/despesa/despesasPorFormaPagamento"; 
+        } else {
+            window.location.href = "/savemoney/despesa/index";
+        }
+    }
 </script>
 </body>
 </html>

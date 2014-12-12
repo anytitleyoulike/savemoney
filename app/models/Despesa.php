@@ -64,4 +64,29 @@ class Despesa extends \Phalcon\Mvc\Model
             'desp_data' => 'data'
         );
     }
+
+
+    public function despesasPorCategoria($categoria, $usuId) {
+
+        $result = Despesa::query()
+                ->innerjoin("Categoria")
+                ->innerjoin("Usuario")
+                ->where("cat_nome = :categoria: AND usu_id = :id:")
+                ->bind(array("categoria" => $categoria,
+                             "id" => $usuId))
+                ->execute();
+
+        return $result;
+    }
+
+    public function totalDespesasPorCategoria($usuId) {
+        $query = new Phalcon\Mvc\Model\Query("select Categoria.cat_nome,Categoria.cat_id, sum(Despesa.valor) as total from Despesa
+                                                INNER JOIN Categoria
+                                                INNER JOIN Usuario
+                                                where usu_id = :usuId:
+                                                group by cat_nome
+                                                order by total DESC", $this->getDI());
+            
+        return  $result = $query->execute(array("usuId" => $usuId));
+    }
 }
