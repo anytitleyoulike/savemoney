@@ -79,7 +79,8 @@ class Despesa extends \Phalcon\Mvc\Model
         return $result;
     }
 
-    public function totalDespesasPorCategoria($usuId) {
+    public function totalDespesasPorCategoria($usuId) 
+    {
         $query = new Phalcon\Mvc\Model\Query("select Categoria.cat_nome,Categoria.cat_id, sum(Despesa.valor) as total from Despesa
                                                 INNER JOIN Categoria
                                                 INNER JOIN Usuario
@@ -87,6 +88,31 @@ class Despesa extends \Phalcon\Mvc\Model
                                                 group by cat_nome
                                                 order by total DESC", $this->getDI());
             
-        return  $result = $query->execute(array("usuId" => $usuId));
+        return  $query->execute(array("usuId" => $usuId));
     }
+
+    public function despesasPorFormaPagamento($pagamento, $usuId) 
+    {
+        $result = Despesa::query()
+                ->innerjoin("FormaPgto")
+                ->innerjoin("Usuario")
+                ->where("tipo = :pagamento: AND usu_id = :id:")
+                ->bind(array("pagamento" => $pagamento, "id" => $usuId))
+                ->execute();
+
+        return $result;
+    }
+
+    public function totalDespesasPorFormaPagamento($usuId) 
+    {
+        $query = new Phalcon\Mvc\Model\Query("select FormaPgto.tipo,FormaPgto.id, sum(Despesa.valor) as total from Despesa
+                                                 INNER JOIN FormaPgto
+                                                 INNER JOIN Usuario
+                                                 where usu_id = :usuId:
+                                                 group by tipo
+                                                 order by total DESC", $this->getDI());
+            
+        return $query->execute(array("usuId" => $usuId));
+    }
+
 }

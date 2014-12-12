@@ -16,10 +16,6 @@ class DespesaController extends \Phalcon\Mvc\Controller
         
         $this->view->categoria = Categoria::find();
         
-        
-        $id = $this->session->get('usuId');
-        $this->view->id = $id;
-
         if($this->request->isPost()) {
             
             $despesa = new Despesa();
@@ -67,19 +63,19 @@ class DespesaController extends \Phalcon\Mvc\Controller
 
     public function despesasPorCategoriaAction($categoria = false) {
         
-        $id = $this->session->get('usuId');
+        $usuId = $this->session->get('usuId');
         $despesa = new Despesa();
         
         if($categoria) {
 
-            $result = $despesa->despesasPorCategoria($categoria, $id);
+            $result = $despesa->despesasPorCategoria($categoria, $usuId);
 
             $this->view->condition = true;
             $this->view->result = $result;
         
         } else {
 
-            $result = $despesa->totalDespesasPorCategoria($id);
+            $result = $despesa->totalDespesasPorCategoria($usuId);
 
             foreach ($result as $value) {
                    $totalGasto += $value->total;
@@ -107,28 +103,21 @@ class DespesaController extends \Phalcon\Mvc\Controller
  
     public function despesasPorFormaPagamentoAction($pagamento = false) 
     {
+        $usuId = $this->session->get('usuId');
+        $despesa = new Despesa();
+
         if($pagamento) {
-            $result = Despesa::query()
-                ->innerjoin("FormaPgto")
-                ->innerjoin("Usuario")
-                ->where("tipo = :pagamento: AND usu_id = 2")
-                ->bind(array("pagamento" => $pagamento))
-                ->execute();
+            
+            $result = $despesa->despesasPorFormaPagamento($pagamento, $usuId);
 
 
             $this->view->result = $result;
             $this->view->condition = true;
 
         } else {
-             $query = new Phalcon\Mvc\Model\Query("select FormaPgto.tipo,FormaPgto.id, sum(Despesa.valor) as total from Despesa
-                                                 INNER JOIN FormaPgto
-                                                 INNER JOIN Usuario
-                                                 where usu_id = 2
-                                                 group by tipo
-                                                 order by total DESC", $this->getDI());
+             
+            $result = $despesa->totalDespesasPorFormaPagamento($usuId);
             
-            $result = $query->execute();
-
             //acumula o montante de cada categoria e gera um resultado total.
             foreach ($result as $value) {
                    $totalGasto += $value->total;
@@ -139,6 +128,7 @@ class DespesaController extends \Phalcon\Mvc\Controller
             $this->view->condition = false;
         }
     }
+    
     public function testeAction() {
           $usuid = $this->session->get('usuId');
             
@@ -146,7 +136,6 @@ class DespesaController extends \Phalcon\Mvc\Controller
             //     "conditions" => "id = :oi:",
             //     "bind" => array("oi" => 18)
             // ));
-
     }
 }
 

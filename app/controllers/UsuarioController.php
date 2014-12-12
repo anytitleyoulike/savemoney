@@ -39,9 +39,6 @@ class UsuarioController extends \Phalcon\Mvc\Controller
 	            		"controller" => "despesa",
 	            		"action" => "index"
 				));
-			// $response = new \Phalcon\Http\Response();
-   //          $response->redirect('despesa/index');
-   //          $response->send();
     		} 
 
     	}
@@ -52,6 +49,10 @@ class UsuarioController extends \Phalcon\Mvc\Controller
     {
         
         $this->session->destroy();
+
+		$response = new \Phalcon\Http\Response();
+        $response->redirect('usuario/login');
+        $response->send();
     }
 
 

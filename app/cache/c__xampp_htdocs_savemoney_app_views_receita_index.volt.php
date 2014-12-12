@@ -30,27 +30,35 @@
                             </ul>
                         </div>
                     </div>
+                </div>
                     <a href="/savemoney/receita/add" class="btn btn-success btn-raised ">Adicionar Receita</a>
-                    <div class="col-lg-12">
-                        <table class="table table-striped table-hover">
-                            <thead>
-                            <tr>
-                                <th>Descrição</th>
-                                <th>Valor</th>
-                                <th>X</th> 
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php foreach ($result as $receita) { ?>
-                            <tr>
-                                <td><a href="/savemoney/receita/update/<?php echo $receita->id; ?>"><?php echo $receita->descricao; ?></a></td>
-                                <td>R$ <?php echo $receita->valor; ?></td>
-                                <td><a href="/savemoney/receita/remove/<?php echo $receita->id; ?>" onclick="removeReceita()">Excluir</a></td>
-                            </tr>
-                            <?php } ?>
-                           </tbody>
-                        </table>
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Receitas</h3>
                     </div>
+
+                    <div class="panel-body">
+                        <div class="col-lg-12">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Descrição</th>
+                                    <th>Valor</th>
+                                    <th>X</th> 
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php foreach ($result as $receita) { ?>
+                                <tr>
+                                    <td><a href="/savemoney/receita/update/<?php echo $receita->id; ?>"><?php echo $receita->descricao; ?></a></td>
+                                    <td>R$ <?php echo $receita->valor; ?></td>
+                                    <td><a href="/savemoney/receita/remove/<?php echo $receita->id; ?>" onclick="removeReceita()">Excluir</a></td>
+                                </tr>
+                                <?php } ?>
+                               </tbody>
+                            </table>
+                        </div>
+                    </div>    
                 </div>
             </div>
         </div>

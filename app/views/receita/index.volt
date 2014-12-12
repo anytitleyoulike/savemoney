@@ -30,27 +30,35 @@
                             </ul>
                         </div>
                     </div>
+                </div>
                     <a href="/savemoney/receita/add" class="btn btn-success btn-raised ">Adicionar Receita</a>
-                    <div class="col-lg-12">
-                        <table class="table table-striped table-hover">
-                            <thead>
-                            <tr>
-                                <th>Descrição</th>
-                                <th>Valor</th>
-                                <th>X</th> 
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for receita in result %}
-                            <tr>
-                                <td><a href="/savemoney/receita/update/{{receita.id}}">{{receita.descricao}}</a></td>
-                                <td>R$ {{receita.valor}}</td>
-                                <td><a href="/savemoney/receita/remove/{{receita.id}}" onclick="removeReceita()">Excluir</a></td>
-                            </tr>
-                            {% endfor %}
-                           </tbody>
-                        </table>
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Receitas</h3>
                     </div>
+
+                    <div class="panel-body">
+                        <div class="col-lg-12">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Descrição</th>
+                                    <th>Valor</th>
+                                    <th>X</th> 
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for receita in result %}
+                                <tr>
+                                    <td><a href="/savemoney/receita/update/{{receita.id}}">{{receita.descricao}}</a></td>
+                                    <td>R$ {{receita.valor}}</td>
+                                    <td><a href="/savemoney/receita/remove/{{receita.id}}" onclick="removeReceita()">Excluir</a></td>
+                                </tr>
+                                {% endfor %}
+                               </tbody>
+                            </table>
+                        </div>
+                    </div>    
                 </div>
             </div>
         </div>
